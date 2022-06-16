@@ -57,6 +57,15 @@ local options = {
     end,
   },
 
+  window = {
+    documentation = {
+      border = { "╭", "─", "╮", "│",  "╯", "─", "╰", "│" },
+    }, 
+    completion = {
+      border = { "╭", "─", "╮", "│",  "╯", "─", "╰", "│" },
+    },
+  },
+
   experimental = {
     native_menu = false,
     ghost_text = true,
