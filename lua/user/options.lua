@@ -1,6 +1,5 @@
 local g   = vim.g
 local opt = vim.opt
-local cmd = vim.cmd
 
 g.loaded_node_provider = 0
 g.loaded_perl_provider = 0
@@ -17,6 +16,7 @@ opt.filetype.indent = true
 
 local options = {
   fileencoding = "utf-8",
+  spelllang    = "pl,en",
 
   backup   = false,
   swapfile = false,
@@ -71,12 +71,3 @@ local options = {
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
-
-cmd("autocmd BufRead,BufNewFile *.h,*.c set filetype=c") -- make .h files be detected as c files
-
-cmd("setlocal spelllang=pl")
-cmd("autocmd FileType tex setlocal spell")
-cmd("autocmd VimLeave *.tex !clearLaTex %")
-cmd("autocmd VimLeave *.java !clearJava %")
-cmd("autocmd BufWritePost !zathura *.pdf")
-cmd("autocmd BufWritePost xresources !xrdb %")

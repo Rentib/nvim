@@ -15,3 +15,11 @@ end
 g.tex_flavor          = "latex"
 g.vimtex_view_method  = "zathura"
 g.tex_comment_nospell = 1
+
+cmd("autocmd VimLeave *.tex !clearLaTex %")
+cmd("autocmd VimLeave *.java !clearJava %")
+
+cmd("autocmd BufWritePost !zathura *.pdf")
+cmd("autocmd BufWritePost xresources !xrdb %")
+
+cmd("autocmd BufRead,BufNewFile *.h,*.c set filetype=c") -- make .h files be detected as c files
