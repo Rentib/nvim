@@ -11,11 +11,6 @@ if colorscheme_present then
   cmd("colorscheme " .. colorscheme)
 end
 
--- latex
-g.tex_flavor          = "latex"
-g.vimtex_view_method  = "zathura"
-g.tex_comment_nospell = 1
-
 cmd("autocmd VimLeave *.tex !clearLaTex %")
 cmd("autocmd VimLeave *.java !clearJava %")
 
