@@ -47,7 +47,7 @@ local options = {
   sources = cmp.config.sources({
       { name = 'nvim_lsp' },
       { name = 'luasnip' },
-      { name = 'buffer' },
+      { name = 'buffer', option = { keyword_pattern = [[\k\+]] } },
       { name = 'path' },
   }),
 

@@ -35,11 +35,11 @@ local options = {
   showmode = false,
   showcmd  = true,
 
-  number         = true,   -- line numbers
-  relativenumber = false,  -- line numbers relative to the line with the cursor
-  numberwidth    = 2,      -- minimal number of columns used for displaying numbers
-  signcolumn     = "yes",  -- some magic
-  ruler          = false,  -- show line and column with cursor in statusline
+  number         = true,  -- line numbers
+  relativenumber = false, -- line numbers relative to the line with the cursor
+  numberwidth    = 2,     -- minimal number of columns used for displaying numbers
+  signcolumn     = "yes", -- some magic
+  ruler          = false, -- show line and column with cursor in statusline
 
   incsearch  = true,
   hlsearch   = true,
