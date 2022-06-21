@@ -11,10 +11,10 @@ if colorscheme_present then
   cmd("colorscheme " .. colorscheme)
 end
 
-cmd("autocmd VimLeave *.tex !clearLaTex %")
+cmd("autocmd VimLeave *.tex !clearLatex %")
 cmd("autocmd VimLeave *.java !clearJava %")
 
 cmd("autocmd BufWritePost !zathura *.pdf")
 cmd("autocmd BufWritePost xresources !xrdb %")
 
-cmd("autocmd BufRead,BufNewFile *.h,*.c set filetype=c") -- make .h files be detected as c files
+cmd("autocmd BufRead,BufNewFile *.h set filetype=c") -- make .h files be detected as c files

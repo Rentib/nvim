@@ -1,0 +1,31 @@
+snippet template_math
+  \documentclass[12pt, a4paper]{article}
+  \usepackage[polish]{babel}
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{mathtools}
+  \usepackage{amsfonts,amsmath,amssymb,amsthm}
+  \usepackage{enumerate}
+  \usepackage{nopageno} % usuwa numery stron
+  \usepackage[margin=.5in]{geometry} % zmniejsza margines
+  \usepackage{fouriernc} % śmieszna czcionka
+
+  \newcommand{\MBBR}{\mathbb{R}}
+  \newcommand{\MBBZ}{\mathbb{Z}}
+  \newcommand{\MBBN}{\mathbb{N}}
+  \newcommand{\MBBC}{\mathbb{C}}
+  \newcommand{\MBBK}{\mathbb{K}}
+  \newcommand{\MBBQ}{\mathbb{Q}}
+
+  \title{$1}
+  \author{Stanisław Bitner}
+  \date{\today}
+
+  \begin{document}
+  \maketitle
+  $2
+  \end{document}
+snippet nc "New Command"
+  \newcommand{${1:cmd}}{${2:realcmd}}
+snippet up "Use Package"
+  \usepackage[${1:options}]{${2:package}}
