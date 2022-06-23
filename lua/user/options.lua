@@ -60,7 +60,7 @@ local options = {
 
   formatoptions = "cqrn1j",
   wrap          = false,
-  scrolloff     = 8,
+  scrolloff     = 7,
   sidescrolloff = 8,
 
   termguicolors = true,
