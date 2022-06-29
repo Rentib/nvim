@@ -25,7 +25,49 @@ snippet template_math
   \maketitle
   $2
   \end{document}
+snippet template_presentation
+  \documentclass{beamer}
+
+  \usepackage[polish]{babel}
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{mathtools}
+  \usepackage{amsfonts,amsmath,amssymb,amsthm}
+  \usepackage{enumerate}
+  \usepackage{nopageno} % usuwa numery stron
+
+  \title{$1}
+  \author{Stanisław Bitner}
+  \date{\today}
+
+  \usetheme{Warsaw}
+  % AnnArbor    | Antibes    | Bergen    | Berkeley    | Berlin
+  % CambridgeUS | Copenhagen | Darmstadt | Dresden     | Frankfurt
+  % Goettingen  | Hannover   | Ilmenau   | JuanLesPins | Luebeck
+  % Madrid      | Malmoe     | Marburg   | Montpellier | PaloAlto
+  % Pittsburgh  | Rochester  | Singapore | Szeged      | Warsaw
+  % [ boxes | default ]
+
+  \usecolortheme{orchid}
+  % list of color themes:
+  % default | albatross | beaver   | beetle | crane
+  % dolphin | dove      | fly      | lily   | orchid
+  % rose    | seagull   | seahorse | whale  | wolverine
+
+  \begin{document}
+
+  \frame{\titlepage}
+
+  $2
+
+  \end{document}
 snippet nc "New Command"
   \newcommand{${1:cmd}}{${2:realcmd}}
 snippet up "Use Package"
   \usepackage[${1:options}]{${2:package}}
+snippet frame
+  \begin{frame}
+  $1
+  \end{frame}
+snippet frametitle
+  \frametitle{${1:title}}
