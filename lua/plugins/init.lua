@@ -118,12 +118,13 @@ return require("packer").startup(function(use)
   use {
     "xiyaowong/nvim-transparent",
     config = function()
-      require("plugins.configs.nvim-transparent")
+      require("plugins.configs.others").transparent()
     end
   }
 
   -- Colorscheme
-  use { "mhartington/oceanic-next" }
+  -- use { "mhartington/oceanic-next" }
+  use { "sainnhe/gruvbox-material" }
 
   -- Dashboard
   use {
