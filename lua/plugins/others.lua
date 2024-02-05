@@ -3,6 +3,13 @@ return {
     -- https://github.com/barreiroleo/ltex_extra.nvim
 
     {
+        "iamcco/markdown-preview.nvim",
+        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+        ft = "markdown",
+        build = function() vim.fn["mkdp#util#install"]() end,
+    },
+
+    {
         'github/copilot.vim',
         cmd = 'Copilot',
         config = function() vim.g.copilot_enabled = 0 end
@@ -45,4 +52,13 @@ return {
             vim.keymap.set('n', '<leader>-', ':Triptych<CR>', { silent = true })
         end
     },
+
+    --{
+    --    'altermo/ultimate-autopair.nvim',
+    --    event = { 'InsertEnter', 'CmdlineEnter' },
+    --    branch = 'v0.6', --recomended as each new version will have breaking changes
+    --    opts = {
+    --        --Config goes here
+    --    },
+    --},
 }
