@@ -3,46 +3,14 @@ return {
         "sainnhe/gruvbox-material",
         priority = 1000,
         config = function()
-            vim.cmd.colorscheme("gruvbox-material")
             -- vim.g.gruvbox_material_enable_bold = 1
             -- vim.g.gruvbox_material_enable_italic = 1
             vim.g.gruvbox_material_transparent_background = 2
             vim.g.gruvbox_material_dim_inactive_windows = 1
             vim.g.gruvbox_material_spell_foreground = 'colored'
+            vim.cmd.colorscheme("gruvbox-material")
         end
     },
-
-    -- {
-    --     "ellisonleao/gruvbox.nvim",
-    --     priority = 1000,
-    --     opts = {
-    --         terminal_colors = true, -- add neovim terminal colors
-    --         undercurl = true,
-    --         underline = true,
-    --         bold = true,
-    --         italic = {
-    --             strings = true,
-    --             emphasis = true,
-    --             comments = true,
-    --             operators = false,
-    --             folds = true,
-    --         },
-    --         strikethrough = true,
-    --         invert_selection = false,
-    --         invert_signs = false,
-    --         invert_tabline = false,
-    --         invert_intend_guides = false,
-    --         inverse = true, -- invert background for search, diffs, statuslines and errors
-    --         contrast = "soft", -- can be "hard", "soft" or empty string
-    --         palette_overrides = {},
-    --         overrides = {},
-    --         dim_inactive = false,
-    --         transparent_mode = false,
-    --     },
-    --     config = function()
-    --         vim.cmd.colorscheme("gruvbox")
-    --     end
-    -- },
 
     {
         "vague2k/huez.nvim",
