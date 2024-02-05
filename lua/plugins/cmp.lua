@@ -49,6 +49,8 @@ return {
             experimental = {
                 ghost_text = true,
             },
+            formatting = {
+            },
         })
     end
 }
