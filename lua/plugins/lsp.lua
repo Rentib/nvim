@@ -2,8 +2,8 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
         "williamboman/mason.nvim",
-        "Fildo7525/pretty_hover",
         "williamboman/mason-lspconfig.nvim",
+        "Fildo7525/pretty_hover",
     },
     lazy = false,
     config = function()
