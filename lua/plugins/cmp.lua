@@ -7,8 +7,8 @@ return {
         { "hrsh7th/cmp-nvim-lsp-signature-help" },
         { "hrsh7th/cmp-buffer" },
         { "hrsh7th/cmp-path" },
-        { "hrsh7th/cmp-nvim-lua" },
         { "saadparwaiz1/cmp_luasnip" },
+        -- { "micangl/cmp-vimtex", ft = "tex" },
     },
     config = function()
         local cmp = require("cmp")

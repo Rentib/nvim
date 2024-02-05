@@ -34,7 +34,6 @@ return {
     -- lf in nvim
     {
         'simonmclean/triptych.nvim',
-        event = 'VeryLazy',
         cmd = "Triptych",
         keys = "<leader>-",
         dependencies = {
