@@ -37,28 +37,4 @@ return {
         cmd = { 'CccPick', 'CccHighlighterEnable', 'CccHighlighterToggle' },
         config = function() require("ccc").setup({}) end
     },
-
-    -- lf in nvim
-    {
-        'simonmclean/triptych.nvim',
-        cmd = "Triptych",
-        keys = "<leader>-",
-        dependencies = {
-            'nvim-lua/plenary.nvim',       -- required
-            'nvim-tree/nvim-web-devicons', -- optional
-        },
-        config = function()
-            require 'triptych'.setup()
-            vim.keymap.set('n', '<leader>-', ':Triptych<CR>', { silent = true })
-        end
-    },
-
-    --{
-    --    'altermo/ultimate-autopair.nvim',
-    --    event = { 'InsertEnter', 'CmdlineEnter' },
-    --    branch = 'v0.6', --recomended as each new version will have breaking changes
-    --    opts = {
-    --        --Config goes here
-    --    },
-    --},
 }
