@@ -69,6 +69,7 @@ return {
                             "--clang-tidy",
                             "--header-insertion=iwyu",
                             "--offset-encoding=utf-16", -- copilot breaks it otherwise
+                            "--query-driver=/usr/bin/*gcc*", -- different compilers
                         },
                         init_options = {
                             clangdFileStatus = true,
