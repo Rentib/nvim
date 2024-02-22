@@ -20,8 +20,24 @@ local mappings = {
     { 'n', '[Q', '<cmd>cfirst<cr>zz' },
     { 'n', ']q', '<cmd>cnext<cr>zz' },
     { 'n', ']Q', '<cmd>clast<cr>zz' },
+
+    { 'n', 'ZZ', '<nop>' },
+
+    -- prevent cursor from moving
+    -- { 'i', '<esc>', '<esc>`^' },
+    -- { 'i', '<C-c>', '<esc>`^' },
+
+    -- smart indentation with 'i', 
+    { 'n', 'i', function() -- https://stackoverflow.com/questions/3003393
+        if vim.v.count <= 1 and vim.fn.match(vim.fn.getline('.'), '\\v[^[:space:]]') == -1 then
+            return '"_cc'
+        end
+        return 'i'
+    end, { expr = true } },
 }
 
-for _, m in pairs(mappings) do
-    vim.keymap.set(m[1], m[2], m[3], { noremap = true, silent = true })
+for _, m in ipairs(mappings) do
+    local opts = { noremap = true, silent = true }
+    if m[4] then opts = vim.tbl_extend('force', opts, m[4]) end
+    vim.keymap.set(m[1], m[2], m[3], opts)
 end
