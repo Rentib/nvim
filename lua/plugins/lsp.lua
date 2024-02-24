@@ -4,6 +4,7 @@ return {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "Fildo7525/pretty_hover",
+        "smjonas/inc-rename.nvim",
     },
     lazy = false,
     config = function()
@@ -11,6 +12,7 @@ return {
         local mason = require("mason")
         local mason_lsp = require("mason-lspconfig")
         local ph_present, ph = pcall(require, "pretty_hover")
+        local ir_present, ir = pcall(require, "inc_rename")
 
         local capabilities = vim.tbl_deep_extend(
             "force",
@@ -22,6 +24,11 @@ return {
         if ph_present then
             ph.setup({})
         end
+
+        if ir_present then
+            ir.setup({})
+        end
+
         mason.setup({})
         mason_lsp.setup({
             ensure_installed = {
@@ -95,9 +102,15 @@ return {
         vim.api.nvim_create_autocmd('LspAttach', {
             group = rentib,
             callback = function(e)
-                local opts = { buffer = e.buf }
+                local opts = { noremap = true, silent = true, buffer = e.buf }
                 vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts)
-                vim.keymap.set("n", "<space>cn", vim.lsp.buf.rename, opts)
+                if ir_present then
+                    vim.keymap.set("n", "<space>cn", function()
+                        return ":IncRename " .. vim.fn.expand("<cword>")
+                    end, { noremap = true, silent = true, buffer = e.buf, expr = true })
+                else
+                    vim.keymap.set("n", "<space>cn", vim.lsp.buf.rename, opts)
+                end
                 vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
                 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
                 vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
