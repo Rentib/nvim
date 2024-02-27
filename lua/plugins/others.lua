@@ -33,8 +33,13 @@ return {
     },
 
     {
-        'uga-rosa/ccc.nvim',
-        cmd = { 'CccPick', 'CccHighlighterEnable', 'CccHighlighterToggle' },
-        config = function() require("ccc").setup({}) end
+        'brenoprata10/nvim-highlight-colors',
+        cmd = { 'HighlightColors' },
+        ft = { 'css' },
+        opts = {
+            render = 'background',
+            enable_named_colors = true,
+            enable_tailwind = false,
+        },
     },
 }
