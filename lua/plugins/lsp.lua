@@ -21,13 +21,8 @@ return {
             cmp_lsp.default_capabilities()
         )
 
-        if ph_present then
-            ph.setup({})
-        end
-
-        if ir_present then
-            ir.setup({})
-        end
+        if ph_present then ph.setup({}) end
+        if ir_present then ir.setup({}) end
 
         mason.setup({})
         mason_lsp.setup({
@@ -75,7 +70,7 @@ return {
                             "--suggest-missing-includes",
                             "--clang-tidy",
                             "--header-insertion=iwyu",
-                            "--offset-encoding=utf-16", -- copilot breaks it otherwise
+                            "--offset-encoding=utf-16",      -- copilot breaks it otherwise
                             "--query-driver=/usr/bin/*gcc*", -- different compilers
                         },
                         init_options = {
