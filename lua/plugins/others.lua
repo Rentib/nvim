@@ -9,11 +9,7 @@ return {
         build = function() vim.fn["mkdp#util#install"]() end,
     },
 
-    {
-        'github/copilot.vim',
-        cmd = 'Copilot',
-        config = function() vim.g.copilot_enabled = 0 end
-    },
+    { 'github/copilot.vim', cmd = 'Copilot', },
 
     {
         'folke/trouble.nvim',
@@ -29,7 +25,7 @@ return {
         'akinsho/flutter-tools.nvim',
         ft = 'dart',
         dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function() require('flutter-tools').setup({}) end
+        opts = {},
     },
 
     {
