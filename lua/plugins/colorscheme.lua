@@ -20,7 +20,7 @@ return {
                 'linrongbin16/colorbox.nvim',
                 dependencies = "rktjmp/lush.nvim",
                 build = function() require('colorbox').update() end,
-                config = function() require('colorbox').setup() end,
+                opts = {},
             },
         },
         config = function()
@@ -42,8 +42,8 @@ return {
                 }
             )
 
-            local colorscheme = require("huez.api").get_colorscheme()
-            vim.cmd("colorscheme " .. colorscheme)
+            -- local colorscheme = require("huez.api").get_colorscheme()
+            -- vim.cmd("colorscheme " .. colorscheme)
 
             vim.keymap.set("n", "<leader>cs", "<cmd>Huez<CR>", {})
         end
