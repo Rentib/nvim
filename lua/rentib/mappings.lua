@@ -34,6 +34,8 @@ local mappings = {
         end
         return 'i'
     end, { expr = true } },
+
+    { 't', '<esc>', '<c-\\><c-n>' }
 }
 
 for _, m in ipairs(mappings) do
