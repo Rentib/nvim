@@ -12,40 +12,5 @@ return {
         end
     },
 
-    {
-        "vague2k/huez.nvim",
-        keys = { "<leader>cs" },
-        dependencies = {
-            {
-                'linrongbin16/colorbox.nvim',
-                dependencies = "rktjmp/lush.nvim",
-                build = function() require('colorbox').update() end,
-                opts = {},
-            },
-        },
-        config = function()
-            require("huez").setup(
-                {
-                    file_path = vim.fs.normalize(vim.fn.stdpath("config")) .. "/.nvim.huez.lua",
-                    fallback = "default",
-                    omit = {
-                        "default", "desert", "evening",
-                        "industry", "koehler", "morning",
-                        "murphy", "pablo", "peachpuff",
-                        "ron", "shine", "slate",
-                        "torte", "zellner", "blue",
-                        "darkblue", "delek", "quiet",
-                        "elflord", "habamax", "lunaperche",
-                    },
-                    picker = "telescope",
-                    picker_opts = require("telescope.themes").get_dropdown({}),
-                }
-            )
-
-            -- local colorscheme = require("huez.api").get_colorscheme()
-            -- vim.cmd("colorscheme " .. colorscheme)
-
-            vim.keymap.set("n", "<leader>cs", "<cmd>Huez<CR>", {})
-        end
-    },
+    -- for more colorschemes use vague2k/huez.nvim with linrongbin16/colorbox.nvim
 }
