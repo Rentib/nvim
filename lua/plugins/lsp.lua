@@ -6,7 +6,7 @@ return {
         "Fildo7525/pretty_hover",
         -- "smjonas/inc-rename.nvim",
     },
-    lazy = false,
+    event = { "BufRead", "BufNewFile" },
     config = function()
         local cmp_lsp = require("cmp_nvim_lsp")
         local mason = require("mason")
