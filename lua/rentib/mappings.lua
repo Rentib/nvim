@@ -23,10 +23,6 @@ local mappings = {
 
     { 'n', 'ZZ', '<nop>' },
 
-    -- prevent cursor from moving
-    -- { 'i', '<esc>', '<esc>`^' },
-    -- { 'i', '<C-c>', '<esc>`^' },
-
     -- smart indentation with 'i', 
     { 'n', 'i', function() -- https://stackoverflow.com/questions/3003393
         if vim.v.count <= 1 and vim.fn.match(vim.fn.getline('.'), '\\v[^[:space:]]') == -1 then
@@ -43,3 +39,19 @@ for _, m in ipairs(mappings) do
     if m[4] then opts = vim.tbl_extend('force', opts, m[4]) end
     vim.keymap.set(m[1], m[2], m[3], opts)
 end
+
+-- lsp mappings
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(e)
+        local opts = { noremap = true, silent = true, buffer = e.buf }
+        vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts)
+        vim.keymap.set("n", "<space>cn", vim.lsp.buf.rename, opts)
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+        vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+        vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+
+        vim.api.nvim_create_user_command("Format", function() vim.lsp.buf.format { async = true } end, {})
+    end
+})

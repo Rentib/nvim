@@ -1,4 +1,13 @@
-require("rentib.mappings")
-require("rentib.options")
-require("rentib.autocmds")
-require("rentib.lazy")
+local function safe_require(mod)
+    local ok, r = pcall(require, mod)
+    if not ok then
+        vim.schedule(function()
+            error(r)
+        end)
+    end
+end
+
+safe_require("rentib.mappings")
+safe_require("rentib.options")
+safe_require("rentib.autocmds")
+safe_require("rentib.lazy")
