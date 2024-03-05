@@ -4,7 +4,7 @@ return {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         "Fildo7525/pretty_hover",
-        "smjonas/inc-rename.nvim",
+        -- "smjonas/inc-rename.nvim",
     },
     lazy = false,
     config = function()
