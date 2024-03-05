@@ -1,80 +1,85 @@
-local g   = vim.g
-local opt = vim.opt
+local g, o = vim.g, vim.opt
 
-local g_options = {
-    loaded_node_provider = 0,
-    loaded_perl_provider = 0,
-    loaded_ruby_provider = 0,
-}
+g.loaded_node_provider = 0
+g.loaded_perl_provider = 0
+g.loaded_ruby_provider = 0
 
-for k, v in pairs(g_options) do
-    g[k] = v
-end
+o.filetype.plugin = true
+o.filetype.indent = true
 
-opt.filetype.plugin = true
-opt.filetype.indent = true
+vim.syntax = 'on'
 
-local options = {
-    fileencoding = 'utf-8',
-    spelllang    = 'pl,en',
+o.fileencoding = 'utf-8'
+o.spelllang    = 'pl,en'
 
-    backup   = false,
-    swapfile = false,
-    undofile = false,
+o.backup   = true
+o.backupdir:remove('.')
+o.swapfile = false
+o.undofile = false
 
-    backspace = 'indent,eol,start',
-    confirm   = true,
+o.backspace = 'indent,eol,start'
+o.confirm   = true
 
-    updatetime = 250,
+o.updatetime = 250
 
-    completeopt = "menuone",
-    wildmenu    = true,
-    wildignore  = { '*.o' },
-    wildmode    = 'longest:full',
-    wildoptions = 'pum',
+o.completeopt = "menuone"
+o.wildmenu    = true
+o.wildignore  = { '*.o' }
+o.wildmode    = 'longest:full'
+o.wildoptions = 'pum'
 
-    laststatus  = 2,
-    showtabline = 1,
-    ruler       = true,
-    showmode    = false,
-    showcmd     = true,
-    display     = 'lastline,truncate',
+o.laststatus  = 2
+o.showtabline = 1
+o.ruler       = true
+o.showmode    = false
+o.showcmd     = true
+o.display     = 'lastline,truncate'
 
-    number         = true,
-    relativenumber = true,
-    numberwidth    = 2,
-    signcolumn     = 'yes',
-    cursorline     = true,
-    cursorlineopt  = 'number',
+o.number         = true
+o.relativenumber = true
+o.numberwidth    = 2
+o.signcolumn     = 'yes'
+o.cursorline     = true
+o.cursorlineopt  = 'number'
 
-    incsearch  = true,
-    hlsearch   = true,
-    ignorecase = true,
-    smartcase  = true,
+o.incsearch  = true
+o.hlsearch   = true
+o.ignorecase = true
+o.smartcase  = true
+o.inccommand = 'split'
 
-    autoindent  = true,
-    smartindent = true,
-    cindent     = true,
-    shiftwidth  = 4,
-    tabstop     = 4,
-    softtabstop = 4,
-    expandtab   = true,
-    shiftround  = false,
+-- o.list      = true
+-- o.listchars = 'tab:▸ '
 
-    clipboard = 'unnamedplus',
-    mouse     = 'a',
+o.autoindent  = true
+o.smartindent = true
+o.cindent     = true
+o.shiftwidth  = 4
+o.tabstop     = 4
+o.softtabstop = 4
+o.expandtab   = true
+o.shiftround  = false
 
-    formatoptions = 'cqrn1j',
+o.clipboard = 'unnamedplus'
 
-    wrap          = false,
-    sidescroll    = 1,
-    scrolloff     = 7,
-    sidescrolloff = 8,
+o.mouse          = 'a'
+o.mousemoveevent = false
+o.mousemodel     = 'extend'
 
-    termguicolors  = true,
-    syntax         = 'on',
-}
+o.shortmess:append('c')
+o.completeopt:append({
+	'noinsert',
+	'noselect',
+	'menuone',
+	'preview',
+})
 
-for k, v in pairs(options) do
-    opt[k] = v
-end
+o.textwidth     = 80
+o.wrap          = false
+o.formatoptions = 'cqrn1j'
+
+o.sidescroll    = 1
+o.scrolloff     = 7
+o.sidescrolloff = 8
+
+o.termguicolors  = true
