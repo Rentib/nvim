@@ -1,6 +1,5 @@
 return {
     "hrsh7th/nvim-cmp",
-    version = false, -- last release is way too old
     event = "InsertEnter",
     dependencies = {
         { "hrsh7th/cmp-nvim-lsp" },
@@ -13,9 +12,6 @@ return {
     config = function()
         local cmp = require("cmp")
         cmp.setup({
-            completion = {
-                completeopt = "menu,menuone,noinsert",
-            },
             snippet = {
                 expand = function(args)
                     require("luasnip").lsp_expand(args.body)
