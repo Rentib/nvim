@@ -42,11 +42,11 @@ end
 
 vim.keymap.set("v", "i", function()
     return vim.api.nvim_get_mode()["mode"] == "" and "I" or "i"
-end, { expr = true, noremap = true, silent = true })
+end, { expr = true, noremap = true, silent = true, nowait = true })
 
 vim.keymap.set("v", "a", function()
     return vim.api.nvim_get_mode()["mode"] == "" and "A" or "a"
-end, { expr = true, noremap = true, silent = true })
+end, { expr = true, noremap = true, silent = true, nowait = true })
 
 -- lsp mappings
 vim.api.nvim_create_autocmd('LspAttach', {
