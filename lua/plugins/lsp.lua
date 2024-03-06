@@ -90,34 +90,5 @@ return {
                 prefix = "",
             },
         })
-
-        local augroup = vim.api.nvim_create_augroup
-        local rentib = augroup('rentib', {})
-
-        vim.api.nvim_create_autocmd('LspAttach', {
-            group = rentib,
-            callback = function(e)
-                local opts = { noremap = true, silent = true, buffer = e.buf }
-                vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts)
-                if ir_present then
-                    vim.keymap.set("n", "<space>cn", function()
-                        return ":IncRename " .. vim.fn.expand("<cword>")
-                    end, { noremap = true, silent = true, buffer = e.buf, expr = true })
-                else
-                    vim.keymap.set("n", "<space>cn", vim.lsp.buf.rename, opts)
-                end
-                vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-                vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-                vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
-                if ph_present then
-                    vim.keymap.set("n", "K", ph.hover, opts)
-                else
-                    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-                end
-                vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-
-                vim.api.nvim_create_user_command("Format", function() vim.lsp.buf.format { async = true } end, {})
-            end
-        })
     end
 }
