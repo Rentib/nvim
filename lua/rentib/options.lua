@@ -86,6 +86,7 @@ o.sidescroll    = 1
 o.scrolloff     = 7
 o.sidescrolloff = 8
 
+o.virtualedit   = "block"
 o.magic         = true
 o.foldmethod    = 'marker'
 o.nrformats     = "bin,hex"
