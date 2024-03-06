@@ -60,17 +60,13 @@ return {
             end
         end
 
-        local mappings = {
-            { "<c-p>",      git_files_fallback, },
-            { "<leader>ff", builtin.find_files, },
-            { "<leader>fg", builtin.live_grep,  },
-            { "<leader>fb", builtin.buffers,    },
-            { "<leader>fh", builtin.help_tags,  },
-            { "<leader>fm", builtin.man_pages,  },
-        }
+        local m = require('keymap')
 
-        for _, m in pairs(mappings) do
-            vim.keymap.set("n", m[1], m[2], { noremap = true, silent = true })
-        end
+        m.n("<c-p>",      git_files_fallback)
+        m.n("<leader>ff", builtin.find_files)
+        m.n("<leader>fg", builtin.live_grep)
+        m.n("<leader>fb", builtin.buffers)
+        m.n("<leader>fh", builtin.help_tags)
+        m.n("<leader>fm", builtin.man_pages)
     end
 }
