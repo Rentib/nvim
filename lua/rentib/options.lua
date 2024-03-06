@@ -14,10 +14,11 @@ vim.syntax             = 'on'
 o.fileencoding         = 'utf-8'
 o.spelllang            = 'pl,en'
 
-o.backup               = true
 o.backupdir:remove('.')
+o.backup         = true
 o.swapfile       = false
 o.undofile       = false
+o.autoread       = true
 
 o.backspace      = 'indent,eol,start'
 o.confirm        = true
@@ -84,5 +85,9 @@ vim.cmd [[ au FileType * setlocal formatoptions=crqn1]jp ]] -- https://stackover
 o.sidescroll    = 1
 o.scrolloff     = 7
 o.sidescrolloff = 8
+
+o.magic         = true
+o.foldmethod    = 'marker'
+o.nrformats     = "bin,hex"
 
 o.termguicolors = true

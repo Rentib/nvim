@@ -40,6 +40,14 @@ for _, m in ipairs(mappings) do
     vim.keymap.set(m[1], m[2], m[3], opts)
 end
 
+vim.keymap.set("v", "i", function()
+    return vim.api.nvim_get_mode()["mode"] == "" and "I" or "i"
+end, { expr = true, noremap = true, silent = true })
+
+vim.keymap.set("v", "a", function()
+    return vim.api.nvim_get_mode()["mode"] == "" and "A" or "a"
+end, { expr = true, noremap = true, silent = true })
+
 -- lsp mappings
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(e)
