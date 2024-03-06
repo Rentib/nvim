@@ -1,64 +1,58 @@
 vim.g.mapleader = ","
 
-local mappings = {
-    { 'n', '<leader>w', '<cmd>w<cr>' },
-    { 'n', '<leader>q', '<cmd>wq<cr>' },
-    { 'n', '<leader>c', '<cmd>!compiler %<cr>' },
+local m = require('keymap')
 
-    { 'v', '<', '<gv' },
-    { 'v', '>', '>gv' },
+m.n('<leader>w', '<cmd>w<cr>')
+m.n('<leader>q', '<cmd>wq<cr>')
+m.n('<leader>c', '<cmd>!compiler %<cr>')
 
-    { 'n', '<left>',  '<cmd>vertical resize -2<cr>' },
-    { 'n', '<down>',  '<cmd>resize +2<cr>' },
-    { 'n', '<up>',    '<cmd>resize -2<cr>' },
-    { 'n', '<right>', '<cmd>vertical resize +2<cr>' },
+m.n('<left>',  '<cmd>vertical resize -2<cr>')
+m.n('<down>',  '<cmd>resize +2<cr>')
+m.n('<up>',    '<cmd>resize -2<cr>')
+m.n('<right>', '<cmd>vertical resize +2<cr>')
 
-    { 'n', '<c-q>',     '<C-w>q' },
-    { 'n', '<c-space>', '<C-w>H' },
+m.n('<c-q>',     '<C-w>q')
+m.n('<c-space>', '<C-w>H')
 
-    { 'n', '[q', '<cmd>cprevious<cr>zz' },
-    { 'n', '[Q', '<cmd>cfirst<cr>zz' },
-    { 'n', ']q', '<cmd>cnext<cr>zz' },
-    { 'n', ']Q', '<cmd>clast<cr>zz' },
+m.n('[q', '<cmd>cprevious<cr>zz')
+m.n('[Q', '<cmd>cfirst<cr>zz')
+m.n(']q', '<cmd>cnext<cr>zz')
+m.n(']Q', '<cmd>clast<cr>zz')
 
-    { 'n', 'ZZ', '<nop>' },
+m.n('ZZ', '<nop>')
 
-    -- smart indentation with 'i', 
-    { 'n', 'i', function() -- https://stackoverflow.com/questions/3003393
-        if vim.v.count <= 1 and vim.fn.match(vim.fn.getline('.'), '\\v[^[:space:]]') == -1 then
-            return '"_cc'
-        end
-        return 'i'
-    end, { expr = true } },
+-- smart indentation with 'i',
+m.n('i', function()
+    if vim.v.count <= 1 and vim.fn.match(vim.fn.getline('.'), '\\v[^[:space:]]') == -1 then
+        return '"_cc'
+    end
+    return 'i'
+end, { expr = true })
 
-    { 't', '<esc>', '<c-\\><c-n>' }
-}
+m.v('<', '<gv')
+m.v('>', '>gv')
 
-for _, m in ipairs(mappings) do
-    local opts = { noremap = true, silent = true }
-    if m[4] then opts = vim.tbl_extend('force', opts, m[4]) end
-    vim.keymap.set(m[1], m[2], m[3], opts)
-end
-
-vim.keymap.set("v", "i", function()
+m.v("i", function()
     return vim.api.nvim_get_mode()["mode"] == "" and "I" or "i"
-end, { expr = true, noremap = true, silent = true, nowait = true })
+end, { expr = true, nowait = true })
 
-vim.keymap.set("v", "a", function()
+m.v("a", function()
     return vim.api.nvim_get_mode()["mode"] == "" and "A" or "a"
-end, { expr = true, noremap = true, silent = true, nowait = true })
+end, { expr = true, nowait = true })
+
+m.t('<esc>', '<c-\\><c-n>')
 
 -- lsp mappings
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(e)
         local opts = { noremap = true, silent = true, buffer = e.buf }
-        vim.keymap.set("n", "<space>ca", vim.lsp.buf.code_action, opts)
-        vim.keymap.set("n", "<space>cn", vim.lsp.buf.rename, opts)
-        vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-        vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
-        vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-        vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+        m.n("<space>ca", vim.lsp.buf.code_action, opts)
+        m.n("<space>cn", vim.lsp.buf.rename, opts)
+        m.n("gd", vim.lsp.buf.definition, opts)
+        m.n("gD", vim.lsp.buf.declaration, opts)
+        m.n("gT", vim.lsp.buf.type_definition, opts)
+        m.n("K", vim.lsp.buf.hover, opts)
+        m.i("<C-h>", vim.lsp.buf.signature_help, opts)
 
         vim.api.nvim_create_user_command("Format", function() vim.lsp.buf.format { async = true } end, {})
     end
