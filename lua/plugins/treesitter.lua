@@ -5,23 +5,29 @@ return {
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     config = function()
         require("nvim-treesitter.configs").setup({
+            ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+            sync_install = false, -- synchronous install of parsers
+            auto_install = true,  -- install missing parsers when entering a buffer
+            ignore_install = { "java_script" },
+
             highlight = {
                 enable = true,
-                disable = { "latex" },
+                disable = { "latex" }, -- vimtex is better at this
                 additional_vim_regex_highlighting = false,
-                use_languagetree = true,
             },
+
+            incremental_selection = {
+                enable = true,
+                keymaps = {
+                    init_selection    = "<Leader>ss",
+                    node_incremental  = "<Leader>si",
+                    scope_incremental = "<Leader>sc",
+                    node_decremental  = "<Leader>sd",
+                },
+            },
+
             indent = { enable = true },
-            ensure_installed = {
-                "c", "cpp",
-                "bash",
-                "html", "css", "javascript", "dart",
-                "ocaml", "haskell",
-                "python",
-                "markdown", "markdown_inline",
-                "lua", "regex", "vim", "vimdoc", "query",
-            },
-            ignore_install =  { "javascript" },
+            textobjects = { enable = true },
         })
     end,
 }
