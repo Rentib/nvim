@@ -2,6 +2,7 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     event = { "VeryLazy" },
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     config = function()
         require("nvim-treesitter.configs").setup({
@@ -27,7 +28,50 @@ return {
             },
 
             indent = { enable = true },
-            textobjects = { enable = true },
+            textobjects = {
+                enable = false,
+                select = {
+                    enable = true,
+                    lookahead = true,
+                    keymaps = {
+                        ["af"] = "@function.outer",
+                        ["if"] = "@function.inner",
+                        ["ac"] = "@class.outer",
+                        ["ic"] = "@class.inner",
+                        -- TODO: perhaps add more objects
+                    },
+
+                    selection_modes = {
+                        -- 'v': charwise, 'V': linewise, '<c-v>': blockwise
+                        ['@function.outer'] = 'V',
+                    },
+                    include_surrounding_whitespace = true,
+                },
+
+                swap = {
+                    enable = true,
+                    swap_next = {
+                        ["<leader>a"] = "@parameter.inner", -- swap current parameter with the next one
+                    },
+                    swap_previous = {
+                        ["<leader>A"] = "@parameter.inner", -- swap previous parameter with the next one
+                    },
+                },
+
+                move = {
+                    enable = false,
+                },
+
+                lsp_interop = {
+                    enable = true,
+                    border = 'none',
+                    floating_preview_opts = {},
+                    peek_definition_code = {
+                        ["<leader>df" ] = "@function.outer",
+                        ["<leader>dF" ] = "@class.outer",
+                    },
+                },
+            },
         })
     end,
 }
