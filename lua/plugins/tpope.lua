@@ -6,20 +6,6 @@ return {
     -- { 'tpope/vim-rhubarb' },
     -- { 'tpope/vim-dispaatch' },
     {
-        'haya14busa/vim-edgemotion',
-        keys = { { '<c-j>', '<c-k>' }, mode = { 'n', 'x', 'o' } },
-        config = function()
-            local m = require('keymap')
-
-            m.n("<c-j>", "m'<Plug>(edgemotion-j)")
-            m.n("<c-k>", "m'<Plug>(edgemotion-k)")
-            m.x("<c-j>", "m'<Plug>(edgemotion-j)")
-            m.x("<c-k>", "m'<Plug>(edgemotion-k)")
-            m.o("<c-j>", "<Plug>(edgemotion-j)")
-            m.o("<c-k>", "<Plug>(edgemotion-k)")
-        end
-    },
-    {
         'justinmk/vim-sneak',
         keys = { 's', 'S' },
         config = function()

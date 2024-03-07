@@ -1,3 +1,40 @@
+local servers = {
+    clangd = {
+        cmd = {
+            "clangd",
+            "--background-index",
+            "--suggest-missing-includes",
+            "--clang-tidy",
+            "--header-insertion=iwyu",
+            "--offset-encoding=utf-16",      -- copilot breaks it otherwise
+            "--query-driver=/usr/bin/*gcc*", -- different compilers
+        },
+        init_options = {
+            clangdFileStatus = true,
+        },
+    },
+    lua_ls = {
+        settings = {
+            Lua = {
+                diagnostics = {
+                    globals = { "vim" },
+                },
+                workspace = {
+                    library = {
+                        [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                        [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
+                        [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
+                        [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
+                    },
+                    maxPreload = 100000,
+                    preloadFileSize = 10000,
+                },
+            },
+        }
+    },
+    texlab = true,
+}
+
 return {
     {
         "williamboman/mason.nvim",
@@ -33,26 +70,24 @@ return {
                 cmp_lsp.default_capabilities()
             )
 
-            lspconfig.lua_ls.setup({
-                capabilities = capabilities,
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = { "vim" },
-                        },
-                        workspace = {
-                            library = {
-                                [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-                                [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-                                [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
-                                [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
-                            },
-                            maxPreload = 100000,
-                            preloadFileSize = 10000,
-                        },
-                    },
-                },
-            })
+            local setup_server = function(server, config)
+                if not config then return end
+                if type(config) ~= "table" then config = {} end
+
+                config = vim.tbl_deep_extend("force", {
+                    on_init = function(client)
+                        client.config.flags = client.config.flags or {}
+                        client.config.flags.allow_incremental_sync = true
+                    end,
+                    capabilities = capabilities,
+                }, config)
+
+                lspconfig[server].setup(config)
+            end
+
+            for server, config in pairs(servers) do
+                setup_server(server, config)
+            end
         end
     },
 }

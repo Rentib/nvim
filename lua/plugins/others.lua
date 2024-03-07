@@ -15,6 +15,22 @@ return {
         build = function() vim.fn["mkdp#util#install"]() end,
     },
 
+    {
+        "Rentib/cliff.nvim",
+        event = "VeryLazy",
+        config = function()
+            local cliff = require('cliff')
+            local m = require('keymap')
+
+            m.n('<c-j>', cliff.go_down, { expr = true })
+            m.o('<c-j>', cliff.go_down, { expr = true })
+            m.v('<c-j>', cliff.go_down, { expr = true })
+            m.n('<c-k>', cliff.go_up,   { expr = true })
+            m.o('<c-k>', cliff.go_up,   { expr = true })
+            m.v('<c-k>', cliff.go_up,   { expr = true })
+        end
+    },
+
     { 'github/copilot.vim', cmd = 'Copilot' },
 
     {
