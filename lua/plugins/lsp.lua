@@ -1,94 +1,58 @@
 return {
-    "neovim/nvim-lspconfig",
-    dependencies = {
+    {
         "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "Fildo7525/pretty_hover",
-        -- "smjonas/inc-rename.nvim",
+        cmd = { "Mason" },
+        opts = {},
     },
-    event = { "BufRead", "BufNewFile" },
-    config = function()
-        local cmp_lsp = require("cmp_nvim_lsp")
-        local mason = require("mason")
-        local mason_lsp = require("mason-lspconfig")
-        local ph_present, ph = pcall(require, "pretty_hover")
-        local ir_present, ir = pcall(require, "inc_rename")
+    {
+        "neovim/nvim-lspconfig",
+        event = { "BufRead", "BufNewFile" },
+        config = function()
+            local lspconfig = require("lspconfig")
+            local cmp_lsp = require("cmp_nvim_lsp")
 
-        local capabilities = vim.tbl_deep_extend(
-            "force",
-            {},
-            vim.lsp.protocol.make_client_capabilities(),
-            cmp_lsp.default_capabilities()
-        )
+            -- add binaries created by Mason without loading Mason
+            local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
+            vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
 
-        if ph_present then ph.setup({}) end
-        if ir_present then ir.setup({}) end
+            vim.diagnostic.config({
+                float = {
+                    focusable = false,
+                    style = "minimal",
+                    border = "rounded",
+                    source = "always",
+                    header = "",
+                    prefix = "",
+                }
+            })
 
-        mason.setup({})
-        mason_lsp.setup({
-            ensure_installed = {
-                "clangd",
-                "lua_ls",
-            },
-            handlers = {
-                function(server_name)
-                    require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
-                    }
-                end,
+            local capabilities = vim.tbl_deep_extend(
+                "force",
+                {},
+                vim.lsp.protocol.make_client_capabilities(),
+                cmp_lsp.default_capabilities()
+            )
 
-                ["lua_ls"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.lua_ls.setup {
-                        capabilities = capabilities,
-                        settings = {
-                            Lua = {
-                                diagnostics = {
-                                    globals = { "vim", "it", "describe", "before_each", "after_each" },
-                                }
-                            }
-                        }
-                    }
-                end,
-
-                ["ltex"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.ltex.setup {
-                        capabilities = capabilities,
-                        root_dir = function(fname)
-                            return lspconfig.util.find_git_ancestor(fname) or lspconfig.util.path.dirname(fname)
-                        end,
-                    }
-                end,
-
-                ["clangd"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.clangd.setup {
-                        cmd = {
-                            "clangd",
-                            "--background-index",
-                            "--suggest-missing-includes",
-                            "--clang-tidy",
-                            "--header-insertion=iwyu",
-                            "--offset-encoding=utf-16",      -- copilot breaks it otherwise
-                            "--query-driver=/usr/bin/*gcc*", -- different compilers
+            lspconfig.lua_ls.setup({
+                capabilities = capabilities,
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { "vim" },
                         },
-                        init_options = {
-                            clangdFileStatus = true,
+                        workspace = {
+                            library = {
+                                [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+                                [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
+                                [vim.fn.stdpath "data" .. "/lazy/ui/nvchad_types"] = true,
+                                [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
+                            },
+                            maxPreload = 100000,
+                            preloadFileSize = 10000,
                         },
-                    }
-                end,
-            }
-        })
-        vim.diagnostic.config({
-            float = {
-                focusable = false,
-                style = "minimal",
-                border = "rounded",
-                source = "always",
-                header = "",
-                prefix = "",
-            },
-        })
-    end
+                    },
+                },
+            })
+        end
+    },
 }
