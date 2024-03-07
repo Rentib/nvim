@@ -32,13 +32,13 @@ end, { expr = true })
 m.v('<', '<gv')
 m.v('>', '>gv')
 
-m.v("i", function()
-    return vim.api.nvim_get_mode()["mode"] == "" and "I" or "i"
-end, { expr = true, nowait = true })
-
-m.v("a", function()
-    return vim.api.nvim_get_mode()["mode"] == "" and "A" or "a"
-end, { expr = true, nowait = true })
+-- These are nice, but conflict with around and inner,
+-- m.v("i", function()
+--     return vim.api.nvim_get_mode()["mode"] == "" and "I" or "i"
+-- end, { expr = true, nowait = true })
+-- m.v("a", function()
+--     return vim.api.nvim_get_mode()["mode"] == "" and "A" or "a"
+-- end, { expr = true, nowait = true })
 
 m.t('<esc>', '<c-\\><c-n>')
 
