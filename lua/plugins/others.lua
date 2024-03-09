@@ -17,18 +17,10 @@ return {
 
     {
         "Rentib/cliff.nvim",
-        event = "VeryLazy",
-        config = function()
-            local cliff = require('cliff')
-            local m = require('keymap')
-
-            m.n('<c-j>', cliff.go_down, { expr = true })
-            m.o('<c-j>', cliff.go_down, { expr = true })
-            m.v('<c-j>', cliff.go_down, { expr = true })
-            m.n('<c-k>', cliff.go_up,   { expr = true })
-            m.o('<c-k>', cliff.go_up,   { expr = true })
-            m.v('<c-k>', cliff.go_up,   { expr = true })
-        end
+        keys = {
+            { '<c-j>', mode = { 'n', 'v', 'o' }, function() require("cliff").go_down() end },
+            { '<c-k>', mode = { 'n', 'v', 'o' }, function() require("cliff").go_up()   end },
+        },
     },
 
     { 'github/copilot.vim', cmd = 'Copilot' },
