@@ -32,6 +32,7 @@ local servers = {
             },
         }
     },
+    pyright = true,
     texlab = true,
 }
 
