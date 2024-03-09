@@ -46,13 +46,13 @@ m.t('<esc>', '<c-\\><c-n>')
 vim.api.nvim_create_autocmd('LspAttach', {
     callback = function(e)
         local opts = { noremap = true, silent = true, buffer = e.buf }
-        m.n("<space>ca", vim.lsp.buf.code_action, opts)
-        m.n("<space>cn", vim.lsp.buf.rename, opts)
-        m.n("gd", vim.lsp.buf.definition, opts)
-        m.n("gD", vim.lsp.buf.declaration, opts)
-        m.n("gT", vim.lsp.buf.type_definition, opts)
-        m.n("K", vim.lsp.buf.hover, opts)
-        m.i("<C-h>", vim.lsp.buf.signature_help, opts)
+        m.n("<space>ca", vim.lsp.buf.code_action,     opts)
+        m.n("<space>cn", vim.lsp.buf.rename,          opts)
+        m.n("gd",        vim.lsp.buf.definition,      opts)
+        m.n("gD",        vim.lsp.buf.declaration,     opts)
+        m.n("gT",        vim.lsp.buf.type_definition, opts)
+        m.n("K",         vim.lsp.buf.hover,           opts)
+        m.i("<C-h>",     vim.lsp.buf.signature_help,  opts)
 
         vim.api.nvim_create_user_command("Format", function() vim.lsp.buf.format { async = true } end, {})
     end
