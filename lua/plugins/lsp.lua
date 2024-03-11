@@ -1,4 +1,5 @@
 local servers = {
+    bashls = true,
     clangd = {
         cmd = {
             "clangd",
@@ -47,7 +48,6 @@ return {
         event = { "BufRead", "BufNewFile" },
         config = function()
             local lspconfig = require("lspconfig")
-            local cmp_lsp = require("cmp_nvim_lsp")
 
             -- add binaries created by Mason without loading Mason
             local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
@@ -64,11 +64,12 @@ return {
                 }
             })
 
+            -- local capabilities = vim.lsp.protocol.make_client_capabilities()
             local capabilities = vim.tbl_deep_extend(
                 "force",
                 {},
                 vim.lsp.protocol.make_client_capabilities(),
-                cmp_lsp.default_capabilities()
+                require("cmp_nvim_lsp").default_capabilities()
             )
 
             local setup_server = function(server, config)
