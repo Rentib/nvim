@@ -1,11 +1,5 @@
-local opt = vim.opt
+local o = vim.opt
 
-local options = {
-    shiftwidth  = 2,
-    tabstop     = 2,
-    softtabstop = 2,
-}
-
-for k, v in pairs(options) do
-    opt[k] = v
-end
+o.shiftwidth  = 2
+o.tabstop     = 2
+o.softtabstop = 2
