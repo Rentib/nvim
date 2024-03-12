@@ -8,7 +8,7 @@ return {
         require("nvim-treesitter.configs").setup({
             ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
             sync_install = false, -- synchronous install of parsers
-            auto_install = true,  -- install missing parsers when entering a buffer
+            auto_install = false, -- install missing parsers when entering a buffer
             ignore_install = { "java_script" },
 
             highlight = {
@@ -18,7 +18,7 @@ return {
             },
 
             incremental_selection = {
-                enable = true,
+                enable = false,
                 keymaps = {
                     init_selection    = "<Leader>ss",
                     node_incremental  = "<Leader>si",
@@ -27,9 +27,9 @@ return {
                 },
             },
 
-            indent = { enable = true },
+            indent = { enable = false },
+
             textobjects = {
-                enable = false,
                 select = {
                     enable = true,
                     lookahead = true,
@@ -46,30 +46,6 @@ return {
                         ['@function.outer'] = 'V',
                     },
                     include_surrounding_whitespace = true,
-                },
-
-                swap = {
-                    enable = true,
-                    swap_next = {
-                        ["<leader>a"] = "@parameter.inner", -- swap current parameter with the next one
-                    },
-                    swap_previous = {
-                        ["<leader>A"] = "@parameter.inner", -- swap previous parameter with the next one
-                    },
-                },
-
-                move = {
-                    enable = false,
-                },
-
-                lsp_interop = {
-                    enable = true,
-                    border = 'none',
-                    floating_preview_opts = {},
-                    peek_definition_code = {
-                        ["<leader>df" ] = "@function.outer",
-                        ["<leader>dF" ] = "@class.outer",
-                    },
                 },
             },
         })
