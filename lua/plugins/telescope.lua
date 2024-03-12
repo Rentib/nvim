@@ -17,16 +17,10 @@ return {
 
         telescope.setup({
             defaults = {
-                mappings = {
-                    i = {
-                        ["<C-h>"] = "which_key",
-                        ["<esc>"] = require("telescope.actions").close,
-                    },
-                },
+                mappings = { i = { ["<esc>"] = require("telescope.actions").close } },
                 prompt_prefix = "   ",
                 selection_caret = "  ",
                 path_display = { "smart" },
-                use_less = true,
             },
 
             extensions = {
@@ -38,8 +32,6 @@ return {
                 },
             },
         })
-
-        -- telescope.load_extension("fzf")
 
         local builtin = require("telescope.builtin")
 
