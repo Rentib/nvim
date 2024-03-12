@@ -3,12 +3,6 @@ return {
     -- https://github.com/barreiroleo/ltex_extra.nvim
 
     {
-        "glacambre/firenvim",
-        lazy = not vim.g.started_by_firenvim,
-        build = function() vim.fn["firenvim#install"](0) end
-    },
-
-    {
         "iamcco/markdown-preview.nvim",
         cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
         ft = "markdown",
@@ -25,14 +19,12 @@ return {
 
     { 'github/copilot.vim', cmd = 'Copilot' },
 
+    { "farmergreg/vim-lastplace", event = "VeryLazy" },
+
     {
         'folke/trouble.nvim',
-        keys = { '<leader>t' },
+        keys = { { '<leader>t', mode = { 'n' }, "<cmd>TroubleToggle<cr>", { noremap = true, silent = true }} },
         cmd = { 'Trouble', 'TroubleToggle' },
-        config = function()
-            vim.api.nvim_set_keymap("n", "<leader>t", "<Cmd>TroubleToggle<CR>", { noremap = true, silent = true })
-            require("trouble").setup({})
-        end
     },
 
     {
