@@ -9,15 +9,14 @@ g.loaded_ruby_provider = 0
 o.filetype.plugin      = true
 o.filetype.indent      = true
 
-vim.syntax             = 'on'
-
 o.fileencoding         = 'utf-8'
 o.spelllang            = 'pl,en'
+o.spelloptions         = "camel"
 
 o.backupdir:remove('.')
 o.backup         = true
 o.swapfile       = false
-o.undofile       = false
+o.undofile       = true
 o.autoread       = true
 
 o.backspace      = 'indent,eol,start'
@@ -25,14 +24,17 @@ o.confirm        = true
 
 o.updatetime     = 250
 
-o.completeopt    = "menuone"
+o.completeopt    = "menuone,preview"
 o.wildmenu       = true
-o.wildignore     = { '*.o' }
+o.wildignore = "*.o"
+o.wildignore:append("__pycache__", "*.pyc", "*pycache*")
+o.wildignorecase = true
 o.wildmode       = 'longest:full'
 o.wildoptions    = 'pum'
 
 o.laststatus     = 2
 o.showtabline    = 1
+o.tabline        = ""
 o.ruler          = true
 o.showmode       = false
 o.showcmd        = true
@@ -44,15 +46,13 @@ o.numberwidth    = 2
 o.signcolumn     = 'yes'
 o.cursorline     = true
 o.cursorlineopt  = 'number'
+o.colorcolumn = "+1"
 
 o.incsearch      = true
 o.hlsearch       = true
 o.ignorecase     = true
 o.smartcase      = true
 o.inccommand     = 'split'
-
--- o.list      = true
--- o.listchars = 'tab:▸ '
 
 o.autoindent     = true
 o.smartindent    = true
@@ -61,13 +61,13 @@ o.shiftwidth     = 4
 o.tabstop        = 4
 o.softtabstop    = 4
 o.expandtab      = true
-o.shiftround     = false
+o.shiftround     = true
 
 o.clipboard      = 'unnamedplus'
 
-o.mouse          = 'a'
+o.mouse          = 'nvi'
 o.mousemoveevent = false
-o.mousemodel     = 'extend'
+o.mousemodel     = 'popup'
 
 o.shortmess:append('c')
 o.completeopt:append({
@@ -92,3 +92,18 @@ o.foldmethod    = 'marker'
 o.nrformats     = "bin,hex"
 
 o.termguicolors = true
+
+-- o.columns = "" -- never set this, unless you want to prank someone
+-- o.fillchars = "vert:│,fold:·,diff:∙"
+o.grepprg = "rg --vimgrep --no-heading --smart-case"
+o.infercase = true
+-- o.laststatus = 3
+o.linebreak = true
+-- o.list = true
+-- o.listchars="tab:▸ ,extends:❯,precedes:❮,nbsp:␣"
+o.showbreak = '↪ '
+o.smarttab = true
+
+-- o.dictionary = ""
+-- o.thesaurus = "" -- dictionary
+-- o.spellsuggest:append('8') -- only best 8 suggestions
