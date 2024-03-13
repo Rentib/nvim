@@ -78,7 +78,9 @@ o.completeopt:append({
 })
 
 o.textwidth = 80
+o.linebreak = true
 o.wrap      = false
+
 vim.cmd [[ au FileType * setlocal formatoptions=crqn1]jp ]] -- https://stackoverflow.com/questions/28375119/how-to-override-options-set-by-ftplugins-in-vim
 -- o.formatoptions = o.formatoptions + "crqn1]jp" - "to/wa2vblmMB"
 
@@ -98,7 +100,6 @@ o.termguicolors = true
 o.grepprg = "rg --vimgrep --no-heading --smart-case"
 o.infercase = true
 -- o.laststatus = 3
-o.linebreak = true
 -- o.list = true
 -- o.listchars="tab:▸ ,extends:❯,precedes:❮,nbsp:␣"
 o.showbreak = '↪ '
@@ -107,3 +108,5 @@ o.smarttab = true
 -- o.dictionary = ""
 -- o.thesaurus = "" -- dictionary
 -- o.spellsuggest:append('8') -- only best 8 suggestions
+
+-- o.jumpoptions = "view"
