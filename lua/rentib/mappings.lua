@@ -2,6 +2,17 @@ vim.g.mapleader = ","
 
 local m = require("keymap")
 
+-- {{{ Insert mode
+m.i("<bs>",      "<nop>") -- i need to learn to press i_CTRL-H
+m.i("<left>",    "<nop>")
+m.i("<down>",    "<nop>")
+m.i("<up>",      "<nop>")
+m.i("<right>",   "<nop>")
+m.i("<c-left>",  "<nop>")
+m.i("<c-down>",  "<nop>")
+m.i("<c-up>",    "<nop>")
+m.i("<c-right>", "<nop>")
+-- }}} 
 
 m.n("<leader>w", "<cmd>w<cr>")
 m.n("<leader>q", "<cmd>wq<cr>")
