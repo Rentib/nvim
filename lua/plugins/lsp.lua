@@ -30,7 +30,7 @@ local servers = {
             },
         }
     },
-    pyright = true,
+    basedpyright = true,
     texlab = true,
 }
 
