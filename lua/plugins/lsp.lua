@@ -4,11 +4,12 @@ local servers = {
         cmd = {
             "clangd",
             "--background-index",
-            "--suggest-missing-includes",
             "--clang-tidy",
+            "--function-arg-placeholders=0",
             "--header-insertion=iwyu",
+            "--header-insertion-decorators",
+            -- "--query-driver=/usr/bin/*gcc*", -- different compilers
             "--offset-encoding=utf-16",      -- copilot breaks it otherwise
-            "--query-driver=/usr/bin/*gcc*", -- different compilers
         },
         init_options = {
             clangdFileStatus = true,
