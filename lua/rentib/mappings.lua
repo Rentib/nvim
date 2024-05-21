@@ -41,6 +41,15 @@ m.n('i', function()
     return 'i'
 end, { expr = true })
 
+-- inlay hints
+m.n("<leader>lh", function()
+    if pcall(vim.lsp.inlay_hint.enable, vim.lsp.inlay_hint.is_enabled()) then
+        vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+    else
+        vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled())
+    end
+end)
+
 m.n("<m-j>", ":m+1<cr>")
 m.n("<m-k>", ":m-2<cr>")
 m.v("<m-j>", ":m'>+<cr>gv=gv")
