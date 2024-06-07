@@ -39,7 +39,7 @@ return {
                 { name = "nvim_lsp_signature_help" },
                 { name = "luasnip" },
             }, {
-                { name = "buffer" },
+                { name = "buffer", option = { keyword_pattern = [[\k\+]] } },
                 { name = "path" },
             }),
             experimental = {
