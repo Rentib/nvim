@@ -16,7 +16,13 @@ m.i("<c-right>", "<nop>")
 
 m.n("<leader>w", "<cmd>w<cr>")
 m.n("<leader>q", "<cmd>wq<cr>")
-m.n("<leader>c", "<cmd>!compiler %<cr>")
+m.n("<leader>c", function()
+    if vim.fn.filereadable("Makefile") == 1 or vim.fn.filereadable("makefile") == 1 then
+        vim.cmd("make")
+    else
+        vim.cmd("!compiler %")
+    end
+end)
 
 m.n("<left>",  "<c-w><")
 m.n("<down>",  "<c-w>-")
