@@ -30,6 +30,8 @@ return {
         },
     },
 
+    { "chrisbra/csv.vim", ft = "csv" }
+
     -- TODO: see it these plugins are cool
     -- { 'Wansmer/treesj' },
     -- { 'mg979/vim-visual-multi' },
@@ -105,5 +107,4 @@ return {
     --         },
     --     },
     -- },
-
 }
