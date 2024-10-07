@@ -3,23 +3,6 @@ return {
     -- https://github.com/barreiroleo/ltex_extra.nvim
 
     {
-        "iamcco/markdown-preview.nvim",
-        cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-        ft = "markdown",
-        build = function() vim.fn["mkdp#util#install"]() end,
-    },
-
-    {
-        'MeanderingProgrammer/markdown.nvim',
-        name = 'render-markdown', -- Only needed if you have another plugin named markdown.nvim
-        dependencies = { 'nvim-treesitter/nvim-treesitter' },
-        ft = "markdown",
-        config = function()
-            require('render-markdown').setup({})
-        end,
-    },
-
-    {
         "Rentib/cliff.nvim",
         keys = {
             { '<c-j>', mode = { 'n', 'v', 'o' }, function() require("cliff").go_down() end },
@@ -28,12 +11,6 @@ return {
     },
 
     { 'github/copilot.vim', cmd = 'Copilot' },
-
-    {
-        'folke/trouble.nvim',
-        keys = { { '<leader>t', mode = { 'n' }, "<cmd>TroubleToggle<cr>", { noremap = true, silent = true }} },
-        cmd = { 'Trouble', 'TroubleToggle' },
-    },
 
     {
         'akinsho/flutter-tools.nvim',
