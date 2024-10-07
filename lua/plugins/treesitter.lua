@@ -5,10 +5,24 @@ return {
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     config = function()
         require("nvim-treesitter.configs").setup({
-            ensure_installed = { "c", "lua", "vim", "vimdoc", "query" },
+            ensure_installed = {
+                "c",
+                "lua",
+                "vim", "vimdoc", "query",
+
+                "comment", "printf", "regex",
+                "bash", "python",
+                "markdown", "markdown_inline",
+                "make",
+                "cpp",
+                "dart",
+                "html", "htmldjango", "css",
+                "haskell", "haskell_persistent",
+                "git_config", "gitcommit", "passwd", "ssh_config",
+            },
             sync_install = false, -- synchronous install of parsers
             auto_install = false, -- install missing parsers when entering a buffer
-            ignore_install = { "java_script" },
+            ignore_install = { "javascript" },
 
             highlight = {
                 enable = true,
