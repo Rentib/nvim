@@ -30,7 +30,13 @@ return {
         },
     },
 
-    { "chrisbra/csv.vim", ft = "csv" }
+    { "chrisbra/csv.vim", ft = "csv" },
+
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^5', -- Recommended
+        lazy = false, -- This plugin is already lazy
+    },
 
     -- TODO: see it these plugins are cool
     -- { 'Wansmer/treesj' },
