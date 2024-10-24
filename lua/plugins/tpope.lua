@@ -3,7 +3,7 @@ return {
     -- { 'tpope/vim-commentary',     keys = { { 'gc', mode = { 'n', 'v' } } } },
     { 'tpope/vim-surround',       keys = { 'ys', 'ds', 'cs' } },
     { 'tpope/vim-rsi',            event = { "InsertEnter", "CmdLineEnter" } },
-    { "farmergreg/vim-lastplace", event = "VeryLazy" },
+    { "farmergreg/vim-lastplace", lazy = false },
 
     -- { 'tpope/vim-rhubarb' },
     -- { 'tpope/vim-dispaatch' },
