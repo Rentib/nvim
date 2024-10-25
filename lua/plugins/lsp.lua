@@ -8,8 +8,8 @@ local servers = {
             "--function-arg-placeholders=0",
             "--header-insertion=iwyu",
             "--header-insertion-decorators",
+            "--offset-encoding=utf-16", -- copilot breaks it otherwise
             -- "--query-driver=/usr/bin/*gcc*", -- different compilers
-            "--offset-encoding=utf-16",      -- copilot breaks it otherwise
         },
         init_options = {
             clangdFileStatus = true,
@@ -51,13 +51,7 @@ return {
             local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
             vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
 
-            -- local capabilities = vim.lsp.protocol.make_client_capabilities()
-            local capabilities = vim.tbl_deep_extend(
-                "force",
-                {},
-                vim.lsp.protocol.make_client_capabilities(),
-                require("cmp_nvim_lsp").default_capabilities()
-            )
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
 
             local setup_server = function(server, config)
                 if not config then return end
