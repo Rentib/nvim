@@ -24,10 +24,9 @@ o.confirm        = true
 
 o.updatetime     = 250
 
-o.completeopt    = "menuone,preview"
+o.completeopt:append({"menuone", "preview", "popup", "fuzzy", "noinsert", "noselect"})
 o.wildmenu       = true
-o.wildignore = "*.o"
-o.wildignore:append("__pycache__", "*.pyc", "*pycache*")
+o.wildignore:append({"*.o", "__pycache__", "*.pyc", "*pycache"})
 o.wildignorecase = true
 o.wildmode       = 'longest:full'
 o.wildoptions    = 'pum'
@@ -70,12 +69,6 @@ o.mousemoveevent = false
 o.mousemodel     = 'popup'
 
 o.shortmess:append('c')
-o.completeopt:append({
-    'noinsert',
-    'noselect',
-    'menuone',
-    'preview',
-})
 
 o.textwidth = 80
 o.linebreak = true
