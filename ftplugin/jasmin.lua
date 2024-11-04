@@ -1,12 +1,6 @@
-local options = {
-    shiftwidth  = 8,
-    tabstop     = 8,
-    softtabstop = 8,
-    expandtab   = false,
-    comments    = ":;",
-    commentstring = "; %s",
-}
-
-for k, v in pairs(options) do
-    vim.opt_local[k] = v
-end
+vim.opt_local.shiftwidth    = 8
+vim.opt_local.tabstop       = 8
+vim.opt_local.softtabstop   = 8
+vim.opt_local.expandtab     = false
+vim.opt_local.comments      = ":;"
+vim.opt_local.commentstring = "; %s"
