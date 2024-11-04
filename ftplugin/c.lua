@@ -1,9 +1,6 @@
-local opt = vim.opt_local -- to set options
-
-opt.textwidth     = 79
-opt.colorcolumn   = "80"
-
-opt.shiftwidth  = 8
-opt.tabstop     = 8
-opt.softtabstop = 8
-opt.expandtab   = false
+vim.opt_local.textwidth   = 79
+vim.opt_local.colorcolumn = "80"
+vim.opt_local.shiftwidth  = 8
+vim.opt_local.tabstop     = 8
+vim.opt_local.softtabstop = 8
+vim.opt_local.expandtab   = false
