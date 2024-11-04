@@ -83,8 +83,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         m.n("gd",        vim.lsp.buf.definition,      opts)
         m.n("gD",        vim.lsp.buf.declaration,     opts)
         m.n("gT",        vim.lsp.buf.type_definition, opts)
-        m.n("K",         vim.lsp.buf.hover,           opts)
-        -- m.i("<C-h>",     vim.lsp.buf.signature_help,  opts)
 
         vim.api.nvim_create_user_command("Format", function() vim.lsp.buf.format { async = true } end, {})
     end
