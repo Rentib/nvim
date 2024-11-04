@@ -41,15 +41,6 @@ return {
             end,
             additional_vim_regex_highlighting = false,
         },
-        -- indent = { enable = true },
-        incremental_selection = {
-            enable = false,
-            keymaps = {
-                init_selection    = "<Leader>ss",
-                node_incremental  = "<Leader>si",
-                scope_incremental = "<Leader>sc",
-                node_decremental  = "<Leader>sd",
-            },
-        },
+        indent = { enable = true },
     },
 }
