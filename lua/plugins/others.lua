@@ -1,7 +1,4 @@
 return {
-    { 'lervag/vimtex', ft = 'tex' },
-    -- https://github.com/barreiroleo/ltex_extra.nvim
-
     {
         "Rentib/cliff.nvim",
         keys = {
@@ -11,13 +8,6 @@ return {
     },
 
     { 'github/copilot.vim', cmd = 'Copilot' },
-
-    {
-        'akinsho/flutter-tools.nvim',
-        ft = 'dart',
-        dependencies = { 'nvim-lua/plenary.nvim' },
-        opts = {},
-    },
 
     {
         'brenoprata10/nvim-highlight-colors',
@@ -32,6 +22,15 @@ return {
 
     { "chrisbra/csv.vim", ft = "csv" },
 
+    { 'lervag/vimtex', ft = 'tex' },
+
+    {
+        'akinsho/flutter-tools.nvim',
+        ft = 'dart',
+        dependencies = { 'nvim-lua/plenary.nvim' },
+        opts = {},
+    },
+
     {
         'mrcjkb/rustaceanvim',
         version = '^5', -- Recommended
@@ -40,36 +39,4 @@ return {
 
     -- TODO: see it these plugins are cool
     -- { 'Wansmer/treesj' },
-    -- { 'mg979/vim-visual-multi' },
-    -- { 'chentoast/marks.nvim' },
-    -- { 'kylechui/nvim-surround', keys = { 'ys', 'ds', 'cs' } },
-    -- {
-    --     'nvimdev/dyninput.nvim',
-    --     event = "VeryLazy",
-    --     config = function()
-    --         local rs = require('dyninput.lang.rust')
-    --         local ms = require('dyninput.lang.misc')
-    --         require('dyninput').setup({
-    --             c = {
-    --                 ['-'] = {
-    --                     { '->', ms.c_struct_pointer },
-    --                     { '_', ms.snake_case },
-    --                 },
-    --             },
-    --             rust = {
-    --                 [';'] = {
-    --                     { '::', rs.double_colon },
-    --                     { ': ', rs.single_colon },
-    --                 },
-    --                 ['='] = { ' => ', rs.fat_arrow },
-    --                 ['-'] = {
-    --                     { ' -> ', rs.thin_arrow },
-    --                     { '_', ms.snake_case },
-    --                 },
-    --                 ['\\'] = { '|!| {}', rs.closure_fn },
-    --             },
-    --         })
-    --     end,
-    --     dependencies = {'nvim-treesitter/nvim-treesitter'}
-    -- },
 }
