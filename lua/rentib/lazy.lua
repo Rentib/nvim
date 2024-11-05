@@ -12,22 +12,15 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-    spec = {
-        { import = "plugins" },
-    },
-    defaults = {
-        lazy = false,
-        version = false,
-    },
-    install = { colorscheme = { "gruvbox-material" } },
+    spec = { { import = "plugins" } },
+    defaults = { lazy = false },
+    install = { colorscheme = { "gruvbox-material", "desert" } },
     checker = { enabled = false },
     change_detection = { notify = false },
     performance = {
         rtp = {
             disabled_plugins = {
                 "gzip",
-                -- "matchit",
-                -- "netrwPlugin",
                 "tarPlugin",
                 "tohtml",
                 "tutor",
