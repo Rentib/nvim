@@ -1,6 +1,6 @@
 return {
     { 'tpope/vim-fugitive',       cmd = { 'G' } },
-    -- { 'tpope/vim-commentary',     keys = { { 'gc', mode = { 'n', 'v' } } } },
+    { 'tpope/vim-commentary',     keys = { { 'gc', mode = { 'n', 'v' } } } },
     { 'tpope/vim-surround',       keys = { 'ys', 'ds', 'cs' } },
     { 'tpope/vim-rsi',            event = { "InsertEnter", "CmdLineEnter" } },
     { "farmergreg/vim-lastplace", lazy = false },
