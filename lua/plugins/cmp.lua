@@ -31,7 +31,7 @@ return {
             sources = cmp.config.sources({
                 {
                     name = "nvim_lsp",
-                    max_item_count = 5,
+                    max_item_count = 7,
                     entry_filter = function(entry) return entry:get_kind() ~= cmp.lsp.CompletionItemKind.Snippet end,
                 },
                 { name = "nvim_lsp_signature_help" },
