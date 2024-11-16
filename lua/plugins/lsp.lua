@@ -35,6 +35,9 @@ local servers = {
         filetypes = { "asm", "nasm", "masm" },
     },
 }
+
+local linters = {
+    python = { 'ruff' },
 }
 
 return {
@@ -75,5 +78,20 @@ return {
                 setup_server(server, config)
             end
         end
+    },
+    {
+        "mfussenegger/nvim-lint",
+        event = { "BufRead", "BufNewFile" },
+        config = function()
+            local lint = require("lint")
+
+            lint.linters_by_ft = linters
+
+            local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
+            vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
+                group = lint_augroup,
+                callback = function() lint.try_lint() end,
+            })
+        end,
     },
 }
