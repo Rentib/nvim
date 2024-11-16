@@ -48,3 +48,20 @@ vim.api.nvim_create_autocmd("LspAttach", {
 m.n("<leader>ih", function()
     vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = 0 }, { bufnr = 0 })
 end)
+
+-- snippets
+vim.keymap.set({"i", "s"}, "<esc>", function()
+    if vim.snippet then
+        vim.snippet.stop()
+    end
+    return "<esc>"
+end, {expr = true, silent = true, noremap = true})
+
+local function snip_jump(key, direction)
+    if vim.snippet.active({direction = direction}) then
+        return string.format("<cmd>lua vim.snippet.jump(%d)<cr>", direction)
+    end
+    return key
+end
+vim.keymap.set({"i", "s"}, "<c-j>", function() return  snip_jump("<c-j>",  1) end, {expr = true, silent = true, noremap = true})
+vim.keymap.set({"i", "s"}, "<c-k>", function() return  snip_jump("<c-k>", -1) end, {expr = true, silent = true, noremap = true})
