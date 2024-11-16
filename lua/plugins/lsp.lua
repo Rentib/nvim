@@ -47,6 +47,11 @@ local servers = {
             },
         },
     },
+
+    bashls = { -- uses shellcheck for linting by default
+        filetypes = { "sh", "bash" },
+        flags = { debounce_text_changes = 300 },
+    },
 }
 
 local linters = {
