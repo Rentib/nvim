@@ -1,3 +1,4 @@
+-- NOTE: https://www.andersevenrud.net/neovim.github.io/lsp/
 local servers = {
     clangd = {
         cmd = {
