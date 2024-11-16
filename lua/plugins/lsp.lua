@@ -30,6 +30,11 @@ local servers = {
         filetypes = { "text", "plaintext", "tex", "markdown" },
         flags = { debounce_text_changes = 300 },
     },
+
+    asm_lsp = {
+        filetypes = { "asm", "nasm", "masm" },
+    },
+}
 }
 
 return {
