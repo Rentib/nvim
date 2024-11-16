@@ -14,6 +14,7 @@ local servers = {
             clangdFileStatus = true,
         },
     },
+
     lua_ls = {
         settings = {
             Lua = {
@@ -25,6 +26,7 @@ local servers = {
             }
         }
     },
+
     texlab = true,
     ltex = {
         filetypes = { "text", "plaintext", "tex", "markdown" },
@@ -34,10 +36,21 @@ local servers = {
     asm_lsp = {
         filetypes = { "asm", "nasm", "masm" },
     },
+
+    basedpyright = {
+        settings = {
+            basedpyright = {
+                analysis = {
+                    ignore = { "*" },         -- ruff
+                    typeCheckingMode = "off", -- ruff
+                },
+            },
+        },
+    },
 }
 
 local linters = {
-    python = { 'ruff' },
+    python = { "ruff" },
 }
 
 return {
