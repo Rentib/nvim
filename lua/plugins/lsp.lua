@@ -1,5 +1,4 @@
 local servers = {
-    bashls = true,
     clangd = {
         cmd = {
             "clangd",
@@ -18,42 +17,41 @@ local servers = {
     lua_ls = {
         settings = {
             Lua = {
-                diagnostics = { globals = { "vim" }, },
                 workspace = {
-                    library = {
-                        [vim.fn.expand "$VIMRUNTIME/lua"] = true,
-                        [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
-                        [vim.fn.stdpath "data" .. "/lazy/lazy.nvim/lua/lazy"] = true,
-                    },
-                    maxPreload = 100000,
-                    preloadFileSize = 10000,
+                    library = vim.api.nvim_get_runtime_file('', true),
+                    checkThirdParty = false,
                 },
-            },
+                runtime = { version = "LuaJIT" },
+            }
         }
     },
-    basedpyright = true,
     texlab = true,
+    ltex = {
+        filetypes = { "text", "plaintext", "tex", "markdown" },
+        flags = { debounce_text_changes = 300 },
+    },
 }
 
 return {
-    {
-        "williamboman/mason.nvim",
-        cmd = { "Mason" },
-        opts = {},
-    },
+    { "williamboman/mason.nvim", cmd = { "Mason" }, opts = {} },
     {
         "neovim/nvim-lspconfig",
         event = { "BufRead", "BufNewFile" },
         config = function()
+            -- add binaries installed by mason.nvim to path
+            local is_windows = vim.fn.has "win32" ~= 0
+            local sep = is_windows and "\\" or "/"
+            local delim = is_windows and ";" or ":"
+            vim.env.PATH = table.concat({ vim.fn.stdpath "data", "mason", "bin" }, sep) .. delim .. vim.env.PATH
+
+            local capabilities = nil
+            if pcall(require, "cmp_nvim_lsp") then
+                capabilities = require('cmp_nvim_lsp').default_capabilities { snippet_support = false }
+            end
+
             local lspconfig = require("lspconfig")
 
-            -- add binaries created by Mason without loading Mason
-            local is_windows = vim.loop.os_uname().sysname == "Windows_NT"
-            vim.env.PATH = vim.fn.stdpath "data" .. "/mason/bin" .. (is_windows and ";" or ":") .. vim.env.PATH
-
-            local capabilities = vim.lsp.protocol.make_client_capabilities()
-
-            local setup_server = function(server, config)
+            local function setup_server(server, config)
                 if not config then return end
                 if type(config) ~= "table" then config = {} end
 
