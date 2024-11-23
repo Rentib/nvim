@@ -36,7 +36,7 @@ return {
                 end,
                 additional_vim_regex_highlighting = false,
             },
-            indent = { enable = true },
+            indent = { enable = false }, -- makes indenting super slow
         })
 
         -- NOTE: this fixes weird issues with comment parser
