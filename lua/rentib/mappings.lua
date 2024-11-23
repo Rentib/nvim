@@ -40,8 +40,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
         m.n("gri", vim.lsp.buf.implementation,  opts)
         m.n("gO",  vim.lsp.buf.document_symbol, opts)
         m.n("gra", vim.lsp.buf.code_action,     opts)
-
-        vim.api.nvim_create_user_command("Format", function() vim.lsp.buf.format { async = true } end, {})
     end
 })
 
