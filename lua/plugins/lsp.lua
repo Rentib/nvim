@@ -55,15 +55,15 @@ local servers = {
     },
 }
 
-local linters = {
-    python = { "ruff" },
-}
-
 return {
     { "williamboman/mason.nvim", cmd = { "Mason" }, opts = {} },
     {
         "neovim/nvim-lspconfig",
         event = { "BufRead", "BufNewFile" },
+        dependencies = {
+            "mfussenegger/nvim-lint",
+            "stevearc/conform.nvim",
+        },
         config = function()
             -- add binaries installed by mason.nvim to path
             local is_windows = vim.fn.has "win32" ~= 0
@@ -96,21 +96,47 @@ return {
             for server, config in pairs(servers) do
                 setup_server(server, config)
             end
-        end
-    },
-    {
-        "mfussenegger/nvim-lint",
-        event = { "BufRead", "BufNewFile" },
-        config = function()
+
             local lint = require("lint")
 
-            lint.linters_by_ft = linters
+            lint.linters_by_ft = {
+                python = { "ruff" },
+            }
 
             local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
             vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
                 group = lint_augroup,
                 callback = function() lint.try_lint() end,
             })
-        end,
+
+            local conform = require("conform")
+
+            conform.setup({
+                formatters_by_ft = {
+                    asm = { "asmfmt" },
+                    c = { "clang-format" },
+                    cpp = { "clang-format" },
+                    json = { "jq" },
+                    latex = { "latexindent" },
+                    python = { "ruff_format" },
+                    shell = { "shfmt" },
+                },
+            })
+
+            -- vim.api.nvim_create_user_command("Format", function() vim.lsp.buf.format { async = true } end, {})
+            vim.api.nvim_create_user_command("Format", function(args)
+                local range = nil
+                if args.count ~= -1 then
+                    local end_line = vim.api.nvim_buf_get_lines(0, args.line2 - 1, args.line2, true)[1]
+                    range = {
+                        start = { args.line1, 0 },
+                        ["end"] = { args.line2, end_line:len() },
+                    }
+                end
+                conform.format({ async = true, lsp_format = "fallback", range = range })
+            end, { range = true })
+
+            vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+        end
     },
 }
