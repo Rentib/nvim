@@ -8,6 +8,7 @@ return {
         -- { "hrsh7th/cmp-buffer" },
         { "iguanacucumber/mag-buffer",                     name = "cmp-buffer" },
         { "https://codeberg.org/FelipeLema/cmp-async-path" },
+        { "micangl/cmp-vimtex" },
     },
     config = function()
         local cmp = require("cmp")
@@ -44,6 +45,17 @@ return {
             }),
             experimental = { ghost_text = true },
             formatting = {},
+        })
+        cmp.setup.filetype("tex", {
+            sources = {
+                { name = 'vimtex',    max_item_count = 7 },
+                {
+                    name = "buffer",
+                    max_item_count = 5,
+                    option = { keyword_pattern = [[\k\+]] },
+                },
+                { name = "async_path" }, -- "path"
+            },
         })
     end
 }
