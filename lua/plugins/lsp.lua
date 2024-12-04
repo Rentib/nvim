@@ -135,8 +135,6 @@ return {
                 end
                 conform.format({ async = true, lsp_format = "fallback", range = range })
             end, { range = true })
-
-            vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
         end
     },
 }
