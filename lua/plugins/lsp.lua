@@ -28,7 +28,22 @@ local servers = {
         }
     },
 
-    texlab = true,
+    texlab = {
+        settings = {
+            texlab = {
+                -- NOTE: preview without vimtex
+                -- build = {
+                --     executable = "latexmk",
+                --     forwardSearchAfter = true,
+                --     onSave = true,
+                -- },
+                -- forwardSearch = {
+                --     executable = "zathura",
+                --     args = { "--synctex-forward", "%l:%1:%f", "%p" },
+                -- },
+            },
+        },
+    },
     ltex = {
         filetypes = { "text", "plaintext", "tex", "markdown" },
         flags = { debounce_text_changes = 300 },
