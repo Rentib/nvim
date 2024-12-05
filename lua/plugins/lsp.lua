@@ -47,6 +47,17 @@ local servers = {
     ltex = {
         filetypes = { "text", "plaintext", "tex", "markdown" },
         flags = { debounce_text_changes = 300 },
+        settings = {
+            ltex = {
+                language = "en-GB",
+                additionalRules = {
+                    enablePickyRules = true,
+                    motherTongue = "pl-PL",
+                },
+                -- completionEnabled = true,
+                checkFrequency = "save",
+            },
+        },
     },
 
     asm_lsp = {
