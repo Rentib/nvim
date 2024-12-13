@@ -2,11 +2,7 @@ return {
     "nvim-telescope/telescope.nvim",
     dependencies = {
         "nvim-lua/plenary.nvim",
-        {
-            "nvim-telescope/telescope-fzf-native.nvim",
-            build = "make",
-            config = function() require("telescope").load_extension("fzf") end,
-        },
+        { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
     },
     keys = { "<C-p>", "<leader>f" },
     config = function()
@@ -24,6 +20,8 @@ return {
                 fzf = {},
             },
         })
+
+        telescope.load_extension("fzf")
 
         local builtin = require("telescope.builtin")
         local is_inside_work_tree = {}
@@ -48,8 +46,8 @@ return {
         m.n("<c-p>",      git_files_fallback)
         m.n("<leader>ff", builtin.find_files)
         m.n("<leader>fg", builtin.live_grep)
-        m.n("<leader>fb", builtin.buffers)
         m.n("<leader>fh", builtin.help_tags)
         m.n("<leader>fm", builtin.man_pages)
+        m.n("<leader>fd", builtin.diagnostics)
     end
 }
