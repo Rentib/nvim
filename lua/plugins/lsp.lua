@@ -10,6 +10,7 @@ local servers = {
             "--header-insertion-decorators",
             "--offset-encoding=utf-16", -- copilot breaks it otherwise
             -- "--query-driver=/usr/bin/*gcc*", -- different compilers
+            "--suggest-missing-includes",
         },
         init_options = {
             clangdFileStatus = true,
@@ -145,6 +146,7 @@ return {
                     json = { "jq" },
                     latex = { "latexindent" },
                     python = { "ruff_format" },
+                    rust = { "rustfmt" },
                     shell = { "shfmt" },
                 },
             })
