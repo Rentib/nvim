@@ -26,7 +26,7 @@ o.updatetime     = 250
 
 o.completeopt:append({"menuone", "preview", "popup", "fuzzy", "noinsert", "noselect"})
 o.wildmenu       = true
-o.wildignore:append({"*.o", "__pycache__", "*.pyc", "*pycache"})
+o.wildignore:append({"*.o", "__pycache__", "*.pyc", "*pycache", "*.jpg", "*.png", "*.gif", "*.pdf"})
 o.wildignorecase = true
 o.wildmode       = 'longest:full'
 o.wildoptions    = 'pum'
