@@ -82,6 +82,14 @@ local servers = {
     },
 }
 
+vim.diagnostic.config({
+    underline = true,
+    virtual_text = true,
+    signs = true,
+    update_in_insert = false,
+    severity_sort = true,
+})
+
 return {
     { "williamboman/mason.nvim", cmd = { "Mason" }, opts = {} },
     {
