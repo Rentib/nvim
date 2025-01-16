@@ -1,6 +1,6 @@
 " Vim syntax file
-" Language: gt
-" Add this to your vimrc "au bufreadpre,bufnewfile *.gt set ft=gt" 
+" Language: latte
+" Add this to your vimrc "au bufreadpre,bufnewfile *.latte set ft=latte" 
 " and put this file in ~/.vim/syntax/
 " Author: Stanisław Bitner <https://github.com/Rentib>
 
@@ -10,59 +10,64 @@ endif
 
 syn case match
 
-syn region gtComment start="/\*" end="\*/" contains=gtTodo
-syn match gtComment "//.*$" contains=gtTodo
-syn match gtComment "^\s*#.*$" contains=gtTodo
+syn region latteComment start="/\*" end="\*/" contains=latteTodo
+syn match latteComment "//.*$" contains=latteTodo
+syn match latteComment "^\s*#.*$" contains=latteTodo
 
-syn region gtString		start=+"+  skip=+\\\\\|\\"+  end=+"+
-syn region gtString		start=+'+  skip=+\\\\\|\\'+  end=+'+
-syn region gtString		start=+`+  skip=+\\\\\|\\`+  end=+`+
+syn region latteString		start=+"+  skip=+\\\\\|\\"+  end=+"+
+syn region latteString		start=+'+  skip=+\\\\\|\\'+  end=+'+
+syn region latteString		start=+`+  skip=+\\\\\|\\`+  end=+`+
 
-syn match gtNumber "[-+]\=\(\<\d[[:digit:]_]*L\=\>\|0[xX]\x[[:xdigit:]_]*\>\)"
-syn match gtBoolean "\<true\|false\>"
+syn match   latteNumber "[-+]\=\(\<\d[[:digit:]_]*L\=\>\|0[xX]\x[[:xdigit:]_]*\>\)"
+syn keyword latteBoolean true false
 
-syn match gtFunction "\<[a-zA-Z][a-zA-Z0-9_]*\s*("me=e-1
+syn match latteFunction "\<[a-zA-Z][a-zA-Z0-9_]*\s*("me=e-1
 
-syn match gtOperator "+"
-syn match gtOperator "-"
-syn match gtOperator "*"
-syn match gtOperator "\/\(.*[\/\*]\)\@!"
-syn match gtOperator "%"
-syn match gtOperator "!"
-syn match gtOperator "&&"
-syn match gtOperator "||"
-syn match gtOperator ">"
-syn match gtOperator ">="
-syn match gtOperator "<"
-syn match gtOperator "<="
-syn match gtOperator "=="
-syn match gtOperator "!="
-syn match gtOperator "="
+syn match latteOperator "+"
+syn match latteOperator "-"
+syn match latteOperator "*"
+syn match latteOperator "\/\(.*[\/\*]\)\@!"
+syn match latteOperator "%"
+syn match latteOperator "!"
+syn match latteOperator "&&"
+syn match latteOperator "||"
+syn match latteOperator ">"
+syn match latteOperator ">="
+syn match latteOperator "<"
+syn match latteOperator "<="
+syn match latteOperator "=="
+syn match latteOperator "!="
+syn match latteOperator "="
 
-syn keyword gtConditional if else
-syn keyword gtRepeat while
-syn keyword gtKeyword return
-syn keyword gtType int string boolean void
+syn keyword latteType        int string boolean void
+syn keyword latteStatement   return
+syn keyword latteConditional if else
+syn keyword latteRepeat      while
+syn keyword latteKeyword     return class
+syn keyword latteTypedef     self
+syn match   latteTypedef     "\.\s*\<class\>"ms=s+1
+syn match   latteClassDecl	 "^class\>"
+syn match   latteClassDecl	 "[^.]\s*\<class\>"ms=s+1
+syn keyword latteClassDecl   extends
+syn keyword latteOperator    new
 
-syn match gtIgnore ";"
-syn match gtIgnore ","
-syn match gtIgnore "\s"
+syn match latteIgnore ";"
+syn match latteIgnore ","
+syn match latteIgnore "\s"
 
-command -nargs=+ HiLink hi def link <args>
+hi def link latteComment        Comment
+hi def link latteString         String
+hi def link latteNumber         Number
+hi def link latteBoolean        Boolean
+hi def link latteConditional    Conditional
+hi def link latteRepeat         Repeat
+hi def link latteOperator       Operator
+hi def link latteKeyword        Statement
+hi def link latteType           Type
+hi def link latteTypedef        Typedef
+hi def link latteClassDecl      StorageClass
+hi def link latteFunction       Function
+hi def link latteIgnore         Ignore
+hi def link latteTodo           Todo
 
-HiLink gtComment   Comment
-HiLink gtString    String
-HiLink gtNumber    Number
-HiLink gtBoolean   Boolean
-HiLink gtConditional   Conditional
-HiLink gtRepeat    Repeat
-HiLink gtOperator  Operator
-HiLink gtKeyword   Statement
-HiLink gtType      Type
-HiLink gtFunction  Function
-HiLink gtIgnore    Ignore
-HiLink gtTodo Todo
-
-delcommand HiLink
-
-let b:current_syntax = "gt"
+let b:current_syntax = "latte"
