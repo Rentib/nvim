@@ -9,6 +9,7 @@ return {
         { "iguanacucumber/mag-buffer",                     name = "cmp-buffer" },
         { "https://codeberg.org/FelipeLema/cmp-async-path" },
         { "micangl/cmp-vimtex" },
+        { "petertriho/cmp-git" },
     },
     config = function()
         local cmp = require("cmp")
@@ -36,26 +37,29 @@ return {
                     entry_filter = function(entry) return entry:get_kind() ~= cmp.lsp.CompletionItemKind.Snippet end,
                 },
                 { name = "nvim_lsp_signature_help" },
+            }, {
                 {
                     name = "buffer",
                     max_item_count = 5,
                     option = { keyword_pattern = [[\k\+]] },
                 },
-                { name = "async_path" }, -- "path"
+                { name = "async_path" },
             }),
             experimental = { ghost_text = true },
             formatting = {},
         })
+
         cmp.setup.filetype("tex", {
-            sources = {
-                { name = 'vimtex',    max_item_count = 7 },
+            sources = cmp.config.sources({
+                { name = 'vimtex', max_item_count = 7 },
+            }, {
                 {
                     name = "buffer",
                     max_item_count = 5,
                     option = { keyword_pattern = [[\k\+]] },
                 },
-                { name = "async_path" }, -- "path"
-            },
+                { name = "async_path" },
+            }),
         })
     end
 }
