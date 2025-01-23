@@ -68,10 +68,23 @@ local servers = {
     basedpyright = {
         settings = {
             basedpyright = {
+                disableOrganizeImports = true,
                 analysis = {
-                    ignore = { "*" },         -- ruff
-                    typeCheckingMode = "off", -- ruff
+                    ignore = { "*" },
+                    typeCheckingMode = "off",
+                    diagnosticMode = "openFilesOnly",
+                    inlayHints = {
+                        callArgumentNames = true
+                    }
                 },
+            },
+        },
+    },
+
+    ruff = {
+        flags = { debounce_text_changes = 300 },
+        init_options = {
+            settings = {
             },
         },
     },
@@ -94,11 +107,7 @@ return {
     { "williamboman/mason.nvim", cmd = { "Mason" }, opts = {} },
     {
         "neovim/nvim-lspconfig",
-        event = { "BufRead", "BufNewFile" },
-        dependencies = {
-            "mfussenegger/nvim-lint",
-            "stevearc/conform.nvim",
-        },
+        event = "User FilePost",
         config = function()
             -- add binaries installed by mason.nvim to path
             local is_windows = vim.fn.has "win32" ~= 0
@@ -132,18 +141,20 @@ return {
                 setup_server(server, config)
             end
 
-            local lint = require("lint")
-
-            lint.linters_by_ft = {
-                python = { "ruff" },
-            }
-
-            local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
-            vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
-                group = lint_augroup,
-                callback = function() lint.try_lint() end,
+            vim.api.nvim_create_autocmd("LspAttach", {
+                group = vim.api.nvim_create_augroup("disable_ruff_hover", { clear = true }),
+                callback = function(args)
+                    local client = vim.lsp.get_client_by_id(args.data.client_id)
+                    if client ~= nil and client.name == 'ruff' then
+                        client.server_capabilities.hoverProvider = false
+                    end
+                end,
             })
-
+        end
+    },
+    {
+        "stevearc/conform.nvim",
+        config = function()
             local conform = require("conform")
 
             conform.setup({
@@ -152,14 +163,11 @@ return {
                     c = { "clang-format" },
                     cpp = { "clang-format" },
                     json = { "jq" },
-                    latex = { "latexindent" },
                     python = { "ruff_format" },
-                    rust = { "rustfmt" },
                     shell = { "shfmt" },
                 },
             })
 
-            -- vim.api.nvim_create_user_command("Format", function() vim.lsp.buf.format { async = true } end, {})
             vim.api.nvim_create_user_command("Format", function(args)
                 local range = nil
                 if args.count ~= -1 then
