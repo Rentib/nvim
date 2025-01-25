@@ -6,18 +6,27 @@ return {
             { "<c-k>", mode = { "n", "v", "o" }, function() require("cliff").go_up() end },
         },
     },
+    { "farmergreg/vim-lastplace", lazy = false },
+    { "github/copilot.vim",       cmd = "Copilot" },
 
-    { "github/copilot.vim", cmd = "Copilot" },
+    -- tpope
+    { "tpope/vim-fugitive",       cmd = { "G" } },
+    { "tpope/vim-surround",       keys = { "ys", "ds", "cs" } },
+    { "tpope/vim-rsi",            event = { "InsertEnter", "CmdLineEnter" } },
+    -- https://github.com/tpope/vim-commentary
+    -- https://github.com/tpope/vim-endwise
+    -- https://github.com/tpope/vim-rhubarb
+    -- https://github.com/tpope/vim-abolish
+    -- https://github.com/tpope/vim-eunuch
 
-    { "lervag/vimtex",      ft = "tex" },
-
+    -- language specific
+    { "lervag/vimtex",            ft = "tex" },
     {
         "akinsho/flutter-tools.nvim",
         ft = "dart",
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {},
     },
-
     {
         "mrcjkb/rustaceanvim",
         version = "^5",

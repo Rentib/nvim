@@ -1,24 +1,25 @@
 return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
-    event = { "VeryLazy" },
+    event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
     config = function()
         require("nvim-treesitter.configs").setup({
             ensure_installed = {
-                "c",
-                "lua",
-                "vim", "vimdoc", "query",
-
-                "comment", "printf", "regex",
-                "bash", "python",
-                "markdown", "markdown_inline",
-                "make",
-                "cpp",
-                "dart",
-                "html", "htmldjango", "css",
-                "haskell", "haskell_persistent",
-                "git_config", "gitcommit", "passwd", "ssh_config",
+                -- "c",
+                -- "lua", "luadoc", "vim", "vimdoc", "query",
+                --
+                -- "comment", "printf", "regex",
+                -- "bash", "python",
+                -- "markdown", "markdown_inline",
+                -- "make",
+                -- "cpp",
+                -- "dart",
+                -- "html", "htmldjango", "css",
+                -- "haskell", "haskell_persistent",
+                --
+                -- "git_config", "gitcommit", "passwd", "ssh_config",
+                -- "zathurarc",
             },
             sync_install = false, -- synchronous install of parsers
             auto_install = false, -- install missing parsers when entering a buffer
@@ -37,6 +38,7 @@ return {
                 additional_vim_regex_highlighting = false,
             },
             indent = { enable = false }, -- makes indenting super slow
+            textobjects = { enable = false },
         })
 
         -- NOTE: this fixes weird issues with comment parser

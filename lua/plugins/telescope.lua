@@ -43,7 +43,7 @@ return {
 
         local m = require('keymap')
 
-        m.n("<c-p>",      git_files_fallback)
+        m.n("<c-p>", git_files_fallback)
         m.n("<leader>ff", builtin.find_files)
         m.n("<leader>fg", builtin.live_grep)
         m.n("<leader>fh", builtin.help_tags)
