@@ -1,6 +1,6 @@
 local g, o             = vim.g, vim.opt
 
-g.vimsyn_embed         = 'l' -- highlight lua in vimscript
+g.vimsyn_embed         = "l" -- highlight lua in vimscript
 
 g.loaded_node_provider = 0
 g.loaded_perl_provider = 0
@@ -9,17 +9,17 @@ g.loaded_ruby_provider = 0
 o.filetype.plugin      = true
 o.filetype.indent      = true
 
-o.fileencoding         = 'utf-8'
-o.spelllang            = 'pl,en'
+o.fileencoding         = "utf-8"
+o.spelllang            = "pl,en"
 o.spelloptions         = "camel"
 
-o.backupdir:remove('.')
+o.backupdir:remove(".")
 o.backup         = true
 o.swapfile       = false
 o.undofile       = true
 o.autoread       = true
 
-o.backspace      = 'indent,eol,start'
+o.backspace      = "indent,eol,start"
 o.confirm        = true
 
 o.updatetime     = 250
@@ -28,30 +28,30 @@ o.completeopt:append({"menuone", "preview", "popup", "fuzzy", "noinsert", "nosel
 o.wildmenu       = true
 o.wildignore:append({"*.o", "__pycache__", "*.pyc", "*pycache", "*.jpg", "*.png", "*.gif", "*.pdf"})
 o.wildignorecase = true
-o.wildmode       = 'longest:full'
-o.wildoptions    = 'pum'
+o.wildmode       = "longest:full"
+o.wildoptions    = "pum"
 
-o.laststatus     = 2
+o.laststatus     = 0
 o.showtabline    = 1
 o.tabline        = ""
 o.ruler          = true
-o.showmode       = false
+o.showmode       = true
 o.showcmd        = true
-o.display        = 'lastline,truncate'
+o.display        = "lastline,truncate"
 
 o.number         = true
 o.relativenumber = true
 o.numberwidth    = 2
-o.signcolumn     = 'yes'
+o.signcolumn     = "yes"
 o.cursorline     = true
-o.cursorlineopt  = 'number'
+o.cursorlineopt  = "number"
 o.colorcolumn = "+1"
 
 o.incsearch      = true
 o.hlsearch       = true
 o.ignorecase     = true
 o.smartcase      = true
-o.inccommand     = 'split'
+o.inccommand     = "split"
 
 o.autoindent     = true
 o.smartindent    = true
@@ -62,13 +62,13 @@ o.softtabstop    = 4
 o.expandtab      = true
 o.shiftround     = true
 
-o.clipboard      = 'unnamedplus'
+o.clipboard      = "unnamedplus"
 
-o.mouse          = 'nvi'
+o.mouse          = "nvi"
 o.mousemoveevent = false
-o.mousemodel     = 'popup'
+o.mousemodel     = "popup"
 
-o.shortmess:append('c')
+o.shortmess:append("c")
 
 o.textwidth = 80
 o.linebreak = true
@@ -83,23 +83,7 @@ o.sidescrolloff = 8
 
 o.virtualedit   = "block"
 o.magic         = true
-o.foldmethod    = 'marker'
+o.foldmethod    = "marker"
 o.nrformats     = "bin,hex"
 
 o.termguicolors = true
-
--- o.columns = "" -- never set this, unless you want to prank someone
--- o.fillchars = "vert:│,fold:·,diff:∙"
-o.grepprg = "rg --vimgrep --no-heading --smart-case"
-o.infercase = true
--- o.laststatus = 3
--- o.list = true
--- o.listchars="tab:▸ ,extends:❯,precedes:❮,nbsp:␣"
-o.showbreak = '↪ '
-o.smarttab = true
-
--- o.dictionary = ""
--- o.thesaurus = "" -- dictionary
--- o.spellsuggest:append('8') -- only best 8 suggestions
-
--- o.jumpoptions = "view"
