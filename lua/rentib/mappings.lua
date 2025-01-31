@@ -33,13 +33,12 @@ m.t("<esc>", "<c-\\><c-n>")
 -- lsp mappings
 vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(e)
-        -- defaults: grn - rename, grr - references, gri - implementation, g0 - document symbol, gra - code action
         local opts = { noremap = true, silent = true, buffer = e.buf }
-        m.n("grn", vim.lsp.buf.rename,          opts)
-        m.n("grr", vim.lsp.buf.references,      opts)
-        m.n("gri", vim.lsp.buf.implementation,  opts)
-        m.n("gO",  vim.lsp.buf.document_symbol, opts)
-        m.n("gra", vim.lsp.buf.code_action,     opts)
+        m.n("grn",   vim.lsp.buf.rename,          opts)
+        m.n("gra",   vim.lsp.buf.code_action,     opts)
+        m.n("grr",   vim.lsp.buf.references,      opts)
+        m.n("gri",   vim.lsp.buf.implementation,  opts)
+        m.n("gO",    vim.lsp.buf.document_symbol, opts)
     end
 })
 
