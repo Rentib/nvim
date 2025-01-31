@@ -5,7 +5,6 @@ return {
 
         conform.setup({
             formatters_by_ft = {
-                asm = { "asmfmt" },
                 c = { "clang-format" },
                 cpp = { "clang-format" },
                 json = { "jq" },
