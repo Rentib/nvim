@@ -70,7 +70,7 @@ o.mousemodel     = "popup"
 
 opt.shortmess:append("c")
 
-o.textwidth = 80
+o.textwidth = 79
 o.linebreak = true
 o.wrap      = false
 
