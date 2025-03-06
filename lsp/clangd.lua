@@ -4,7 +4,7 @@ return {
         "--background-index",
         "--clang-tidy",
         "--function-arg-placeholders=0",
-        "--header-insertion=iwyu",
+        "--header-insertion=never",
         "--header-insertion-decorators",
         "--offset-encoding=utf-16", -- copilot breaks it otherwise
         -- "--query-driver=/usr/bin/*gcc*", -- different compilers
