@@ -13,3 +13,5 @@ vim.diagnostic.config({
     update_in_insert = false,
     severity_sort = true,
 })
+
+vim.cmd("command! LspStop lua vim.lsp.stop_client(vim.lsp.get_clients())")
