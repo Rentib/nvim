@@ -1,7 +1,7 @@
-local filetypes = { "bib", "gitcommit", "markdown", "plaintex", "rst", "tex", "pandoc", "rmd", "text" }
+local filetypes = { "bib", "markdown", "plaintex", "tex" }
 
 return {
-    cmd = { "ltex-ls" },
+    cmd = { "ltex-ls-plus" },
     filetypes = filetypes,
     root_markers = { ".git" },
     flags = { debounce_text_changes = 300 },
