@@ -10,7 +10,7 @@ return {
         -- "--query-driver=/usr/bin/*gcc*", -- different compilers
         "--suggest-missing-includes",
     },
-    filetypes = { "c", "cpp" },
+    filetypes = { "c", "cpp", "cuda" },
     root_markers = { ".git" },
     init_options = { clangdFileStatus = true },
 }
