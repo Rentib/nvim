@@ -9,6 +9,8 @@ return {
     { "farmergreg/vim-lastplace", lazy = false },
     { "github/copilot.vim",       cmd = "Copilot" },
 
+    { "stevearc/oil.nvim",        opts = {},                                lazy = false },
+
     -- tpope
     { "tpope/vim-fugitive",       cmd = { "G" } },
     { "tpope/vim-surround",       keys = { "ys", "ds", "cs" } },
