@@ -32,4 +32,8 @@ return {
         version = "^5",
         lazy = false,
     },
+    {
+        'mrcjkb/haskell-tools.nvim',
+        ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
+    },
 }
