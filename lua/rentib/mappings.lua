@@ -3,7 +3,6 @@ vim.g.mapleader = ","
 local m = require("keymap")
 
 m.n("<leader>w", "<cmd>w<cr>")
-m.n("<leader>q", "<cmd>wq<cr>")
 m.n("<leader>y", "<cmd>%y<cr>")
 
 m.n("<left>",  "<c-w><")
