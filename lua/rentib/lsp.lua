@@ -28,7 +28,7 @@ vim.lsp.config("clangd", {
         "--suggest-missing-includes",
     },
     filetypes = { "c", "cpp", "cuda" },
-    root_markers = { ".git" },
+    root_markers = { ".git", "compile_commands.json" },
     init_options = { clangdFileStatus = true },
 })
 
@@ -190,6 +190,29 @@ vim.lsp.enable({
     "tinymist",
 })
 
+vim.cmd("command! LspStop lua vim.lsp.stop_client(vim.lsp.get_clients())")
+
+vim.api.nvim_create_autocmd('LspAttach', {
+    callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        if client and client:supports_method("textDocument/documentColor") then
+            vim.lsp.document_color.enable(true, args.buf, { style = 'virtual' })
+        end
+
+        local m = require("keymap")
+        local opts = { noremap = true, silent = true, buffer = args.buf }
+        m.n("grn", vim.lsp.buf.rename, opts)
+        m.n("gra", vim.lsp.buf.code_action, opts)
+        m.n("grr", vim.lsp.buf.references, opts)
+        m.n("gri", vim.lsp.buf.implementation, opts)
+        m.n("gO", vim.lsp.buf.document_symbol, opts)
+
+        m.n("<leader>ih", function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+        end, opts)
+    end
+})
+
 vim.diagnostic.config({
     underline = true,
     virtual_text = true,
@@ -197,14 +220,3 @@ vim.diagnostic.config({
     update_in_insert = false,
     severity_sort = true,
 })
-
-vim.api.nvim_create_autocmd('LspAttach', {
-    callback = function(args)
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-        if client and client:supports_method('textDocument/documentColor') then
-            vim.lsp.document_color.enable(true, args.buf, { style = 'virtual' })
-        end
-    end
-})
-
-vim.cmd("command! LspStop lua vim.lsp.stop_client(vim.lsp.get_clients())")
