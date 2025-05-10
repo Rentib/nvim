@@ -1,6 +1,7 @@
 local g, o, opt        = vim.g, vim.o, vim.opt
 
-g.vimsyn_embed         = "l" -- highlight lua in vimscript
+g.vimsyn_embed         = "l"  -- highlight lua in vimscript
+g.c_syntax_for_h       = true -- .h files are c not cpp
 
 g.loaded_node_provider = 0
 g.loaded_perl_provider = 0
