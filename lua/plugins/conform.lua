@@ -10,6 +10,7 @@ return {
                 json = { "jq" },
                 python = { "ruff_format" },
                 shell = { "shfmt" },
+                typst = { "typstyle" },
             },
         })
 
