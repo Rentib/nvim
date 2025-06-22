@@ -7,7 +7,21 @@ return {
         },
     },
     { "farmergreg/vim-lastplace", lazy = false },
-    { "github/copilot.vim",       cmd = "Copilot" },
+
+    {
+        "zbirenbaum/copilot.lua",
+        cmd = "Copilot",
+        config = function()
+            require("copilot").setup({
+                suggestion = {
+                    enabled = true,
+                    auto_trigger = true,
+                    debounce = 50,
+                    keymap = { accept = "<c-l>" },
+                },
+            })
+        end,
+    },
 
     { "stevearc/oil.nvim",        opts = {},                                lazy = false },
 
@@ -28,14 +42,17 @@ return {
         ft = "dart",
         dependencies = { "nvim-lua/plenary.nvim" },
         opts = {},
+        enabled = false,
     },
     {
         "mrcjkb/rustaceanvim",
         version = "^5",
         lazy = false,
+        enabled = false,
     },
     {
         'mrcjkb/haskell-tools.nvim',
         ft = { 'haskell', 'lhaskell', 'cabal', 'cabalproject' },
+        enabled = false,
     },
 }
