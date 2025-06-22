@@ -1,65 +1,44 @@
 return {
-    "hrsh7th/nvim-cmp",
+    "saghen/blink.cmp",
     event = { "InsertEnter" },
-    dependencies = {
-        -- { "hrsh7th/cmp-nvim-lsp" },
-        { "iguanacucumber/mag-nvim-lsp",                   name = "cmp-nvim-lsp", opts = {} },
-        { "hrsh7th/cmp-nvim-lsp-signature-help" },
-        -- { "hrsh7th/cmp-buffer" },
-        { "iguanacucumber/mag-buffer",                     name = "cmp-buffer" },
-        { "https://codeberg.org/FelipeLema/cmp-async-path" },
-        { "micangl/cmp-vimtex" },
-        { "petertriho/cmp-git" },
-    },
-    config = function()
-        local cmp = require("cmp")
-        local mapping = {
-            ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-            ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-            ["<C-e>"] = cmp.mapping.abort(),
-            ["<C-y>"] = cmp.mapping.confirm {
-                behavior = cmp.ConfirmBehavior.Insert,
-                select = true,
-            },
-            ["<C-space>"] = cmp.mapping.confirm {
-                behavior = cmp.ConfirmBehavior.Insert,
-                select = true,
-            },
-        }
-        cmp.setup({
-            performance = { debounce = 0, throttle = 0 },
-            snippet = { expand = function(args) vim.snippet.expand(args.body) end },
-            mapping = cmp.mapping.preset.insert(mapping),
-            sources = cmp.config.sources({
-                {
-                    name = "nvim_lsp",
-                    max_item_count = 7,
-                    entry_filter = function(entry) return entry:get_kind() ~= cmp.lsp.CompletionItemKind.Snippet end,
+    build = "cargo build --release",
+    opts = {
+        keymap = {
+            ["<C-n>"]     = { "select_next", "fallback" },
+            ["<C-p>"]     = { "select_prev", "fallback" },
+            ["<C-e>"]     = { "cancel", "fallback" },
+            ["<C-y>"]     = { "select_and_accept", "fallback" },
+            ["<C-space>"] = { "select_and_accept", "fallback" },
+        },
+        appearance = {
+            use_nvim_cmp_as_default = true,
+            nerd_font_variant = "mono"
+        },
+        sources = {
+            default = { "lsp", "buffer", "path" },
+            providers = {
+                lsp = {
+                    name = "lsp",
+                    module = "blink.cmp.sources.lsp",
+                    max_items = 7,
                 },
-                { name = "nvim_lsp_signature_help" },
-            }, {
-                {
+                buffer = {
                     name = "buffer",
-                    max_item_count = 5,
-                    option = { keyword_pattern = [[\k\+]] },
+                    module = "blink.cmp.sources.buffer",
+                    max_items = 5,
+                    min_keyword_length = 2,
                 },
-                { name = "async_path" },
-            }),
-            experimental = { ghost_text = true },
-            formatting = {},
-        })
+            },
+        },
+        completion = {
+            accept = { auto_brackets = { enabled = false, }, },
+            list = { selection = { preselect = false, auto_insert = true, }, },
+            menu = { draw = { columns = { { "label", "label_description", gap = 1 }, }, }, },
+        },
+        fuzzy = { implementation = "prefer_rust_with_warning" },
+        signature = { enabled = true, window = { show_documentation = false }, },
+        cmdline = { enabled = false },
 
-        cmp.setup.filetype("tex", {
-            sources = cmp.config.sources({
-                { name = 'vimtex', max_item_count = 7 },
-            }, {
-                {
-                    name = "buffer",
-                    max_item_count = 5,
-                    option = { keyword_pattern = [[\k\+]] },
-                },
-                { name = "async_path" },
-            }),
-        })
-    end
+    },
+    opts_extend = { "sources.default" }
 }
