@@ -9,7 +9,6 @@ return {
                 -- "c",
                 -- "lua", "luadoc", "vim", "vimdoc", "query",
                 --
-                -- "comment", "printf", "regex",
                 -- "bash", "python",
                 -- "markdown", "markdown_inline",
                 -- "make",
@@ -39,11 +38,6 @@ return {
             },
             indent = { enable = false }, -- makes indenting super slow
             textobjects = { enable = false },
-        })
-
-        -- NOTE: this fixes weird issues with comment parser
-        vim.api.nvim_create_autocmd("LspAttach", {
-            callback = function() vim.api.nvim_set_hl(0, "@lsp.type.comment", {}) end,
         })
     end,
 }
