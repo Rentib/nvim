@@ -5,11 +5,6 @@ local m = require("keymap")
 m.n("<leader>w", "<cmd>w<cr>")
 m.n("<leader>y", "<cmd>%y<cr>")
 
-m.n("<left>",  "<c-w><")
-m.n("<down>",  "<c-w>-")
-m.n("<up>",    "<c-w>+")
-m.n("<right>", "<c-w>>")
-
 m.n("<c-q>", "<C-w>q")
 
 -- smart indentation with 'i',
