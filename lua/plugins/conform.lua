@@ -7,10 +7,12 @@ return {
             formatters_by_ft = {
                 c = { "clang-format" },
                 cpp = { "clang-format" },
+                css = { "prettier" },
                 json = { "jq" },
                 python = { "ruff_format" },
                 shell = { "shfmt" },
                 typst = { "typstyle" },
+                templ = { "templ", "prettier" },
             },
         })
 
@@ -25,5 +27,7 @@ return {
             end
             conform.format({ async = true, lsp_format = "fallback", range = range })
         end, { range = true })
+
+        vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end
 }
